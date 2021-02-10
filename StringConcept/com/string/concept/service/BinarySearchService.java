@@ -1,4 +1,4 @@
-package com.binary.search.service;
+package com.string.concept.service;
 
 import java.util.Arrays;
 

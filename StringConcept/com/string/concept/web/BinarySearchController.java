@@ -1,8 +1,8 @@
-package com.binary.search.web;
+package com.string.concept.web;
 
 import java.util.Scanner;
 
-import com.string.concept.service.BinarySearchService;
+import com.binary.search.service.BinarySearchService;
 
 public class BinarySearchController {
 	static Scanner takeInput = new Scanner(System.in);

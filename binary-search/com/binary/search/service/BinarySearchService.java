@@ -51,9 +51,12 @@ public class BinarySearchService {
 		return sum <= k ? true : false;
 	}
 
-	public boolean checkIfNumberHave(int[] arr, int n, int find) {
+	public boolean checkIfNumberHave(long[] arr, int n, int find) {
 		int start = 0;
 		int end = n - 1;
+		if(find < arr[start] || find > arr[end] ) {
+			return false;
+		}
 		while (start <= end) {
 			int mid = start + ((end - start) / 2);
 			if (arr[mid] == find) {
@@ -65,15 +68,21 @@ public class BinarySearchService {
 			}
 		}
 		return false;
+//		return Arrays.binarySearch(arr, find) == 0 ? false : true;
 	}
 
-	public boolean checkIfNumberHaveIn2DMatrix(int[][] arr, int row, int column, int find) {
-		for (int[] wholeRow : arr) {
-			Arrays.sort(wholeRow);
-			if (checkIfNumberHave(wholeRow, column, find)) {
+	// we can do it by two ways
+	// 1) using hashMap
+	// 2) store all element in 1D array and find number by using binary search
+	// algorithm
+
+	public boolean checkIfNumberHaveIn2DMatrix(long[][] arr, int row, int column, int find) {
+		for (long[] wholeRow : arr) { // Row times
+			Arrays.sort(wholeRow); // NlogN
+			if (checkIfNumberHave(wholeRow, column, find)) { // BSA: logN
 				return true;
 			}
 		}
 		return false;
-	}
+	} // row * CollogColumn * logColumn -> r*c (logCol)^2
 }

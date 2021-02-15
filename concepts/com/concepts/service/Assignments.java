@@ -16,7 +16,9 @@ public class Assignments {
 //			}
 //		}
 //		return current;
-		
+		int a = 4;
+		int b = 6;
+		int c = (int) Math.pow(a, b);
 		// second approch o(n)
 		
 		int index = 1;

@@ -1,6 +1,9 @@
 package com.binary.search.service;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BinarySearchService {
 
@@ -85,4 +88,15 @@ public class BinarySearchService {
 		}
 		return false;
 	} // row * CollogColumn * logColumn -> r*c (logCol)^2
+	
+	public Set<Integer> converArrayToSet(int[][] arr) {
+		Set<Integer> numberSet = new HashSet<>();
+		for (int[] wholeRow : arr) { // Row times
+		       for(int colData : wholeRow ) {
+		    	   numberSet.add(colData);
+		       }
+		}
+		return numberSet;
+	} 
+	
 }

@@ -4,51 +4,73 @@ import java.util.Arrays;
 
 public class ComplexityService {
 
+	public boolean checkIfMthPowerOfNumberIsPrime(int num, int m) {
+		if (m == 1) {
+			return isItPrimeNumber(num);
+		}
+		int power = this.calculateMthPowerOfNumber(num, m);
+		if (power == 0) { // not Mth power
+			return false;
+		}
+		return isItPrimeNumber(power);
+	}
+
+	private int calculateMthPowerOfNumber(int num, int m) {
+		int pow = 1;
+		int count = 0;
+		while (pow < num) {
+			pow *= m;
+			count++;
+		}
+		return num == pow ? count : 0;
+	}
+
 	public int getTotalPrimeNumber(int num) {
 		int totalPrimeNumber = 0;
 		if (num >= 2) {
-			System.out.print(2 +  " ");
+			System.out.print(2 + " ");
 			totalPrimeNumber++;
 			if (num == 2) {
 				return totalPrimeNumber;
 			} else if (num >= 3) {
-				System.out.print(3 +  " ");
+				System.out.print(3 + " ");
 				totalPrimeNumber++;
 				if (num == 3) {
 					return totalPrimeNumber;
-				} else if(num >= 5) {
-					System.out.print(5 +  " ");
+				} else if (num >= 5) {
+					System.out.print(5 + " ");
 					totalPrimeNumber++;
-					if(num == 5) {
+					if (num == 5) {
 						return totalPrimeNumber;
 					}
 				}
 			}
 		}
 
-	    //int sizeOfI = num / 6;
-	    // 6 + 1 and 6 - 1 always prime, where n is natural number( except 2, 3, 5,7 ,11 prime numbers )
-		
-		for (int i = 1; num >= 6*i - 1 ; i++) {
-		     int n = 6*i;
-		     if(n+1 <= num && (n < 12 || checkMultipleOfPrimeNumber(n + 1))) {
-		    	 System.out.print(n+1 +  " ");
-		    	 totalPrimeNumber++; 
-		     }
-		     if(n - 1 == 11 || checkMultipleOfPrimeNumber(n - 1)) {
-		    	 System.out.print(n-1 +  " ");
-		    	 totalPrimeNumber ++;
-		     }
+		// int sizeOfI = num / 6;
+		// 6 + 1 and 6 - 1 always prime, where n is natural number( except 2, 3, 5,7 ,11
+		// prime numbers )
+
+		for (int i = 1; num >= 6 * i - 1; i++) {
+			int n = 6 * i;
+			if (n + 1 <= num && (n < 12 || checkMultipleOfPrimeNumber(n + 1))) {
+				System.out.print(n + 1 + " ");
+				totalPrimeNumber++;
+			}
+			if (n - 1 == 11 || checkMultipleOfPrimeNumber(n - 1)) {
+				System.out.print(n - 1 + " ");
+				totalPrimeNumber++;
+			}
 		}
 		return totalPrimeNumber;
 	}
-	
-    boolean checkMultipleOfPrimeNumber(int n) {
-    	if(n % 2 == 0 || n % 3 == 0 || n % 5 == 0 || n % 7 == 0 || n % 11 == 0  ) {
-    		return false;
-    	}
-    	return true;
-    }
+
+	boolean checkMultipleOfPrimeNumber(int n) {
+		if (n % 2 == 0 || n % 3 == 0 || n % 5 == 0 || n % 7 == 0 || n % 11 == 0) {
+			return false;
+		}
+		return true;
+	}
 
 	public int findMisssingInteger(int[] a) {
 		Arrays.sort(a);
@@ -85,7 +107,7 @@ public class ComplexityService {
 		if (num == 1 || (num & 1) == 0) {
 			return false;
 		}
-
+		// i = i + 2 -> because multiple of 2 never prime number
 		for (int i = 3; i <= Math.sqrt(num); i = i + 2) {
 			if (num % i == 0) {
 				return false;

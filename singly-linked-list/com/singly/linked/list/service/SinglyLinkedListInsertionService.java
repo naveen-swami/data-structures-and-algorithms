@@ -75,11 +75,32 @@ public class SinglyLinkedListInsertionService {
 		return head;
 	}
 
+	public int nThNodeFromEndOfLinkedList(Node head, int nThNode) {
+		// list: 4 5 6 7 and k = 2
+		Node anjana = head;
+		Node naveen = head;
+		int size = 1;
+		while(anjana.next != null) {
+			if(size >= nThNode) {
+				naveen = naveen.next;
+			}
+			anjana  = anjana.next;
+			size++;
+		}
+		// if nThNode greater then list size
+        if(size < nThNode){
+            return -1;
+        }
+
+	   return naveen.val;
+	}
+
 	public void displaySinglyLinkedList(Node head) {
 		Node temp = head;
 		while (temp != null) {
 			System.out.print(temp.val + " ");
 			temp = temp.next;
 		}
+		System.out.println();
 	}
 }

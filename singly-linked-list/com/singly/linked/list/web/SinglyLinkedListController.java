@@ -12,8 +12,9 @@ public class SinglyLinkedListController {
 
 	public static void main(String[] args) {
 		insertAtEndOfList();
-		askByUser();
+		//askByUser();
 		singlyLinkedListService.displaySinglyLinkedList(head);
+		System.out.println(singlyLinkedListService.nThNodeFromEndOfLinkedList(head, 2));
 	}
 
 	static Node insertAtEndOfList() {

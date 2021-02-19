@@ -3,18 +3,23 @@ package com.singly.linked.list.web;
 import java.util.Scanner;
 
 import com.singly.linked.list.service.Node;
-import com.singly.linked.list.service.SinglyLinkedListInsertionService;
+import com.singly.linked.list.service.SinglyLinkedListDeletionService;
 
 public class SinglyLinkedListController {
 	static Scanner scanner = new Scanner(System.in);
-	static SinglyLinkedListInsertionService singlyLinkedListService = new SinglyLinkedListInsertionService();
+	static SinglyLinkedListDeletionService singlyLinkedListService = new SinglyLinkedListDeletionService();
 	static Node head = null;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		insertAtEndOfList();
-		//askByUser();
+//		head = singlyLinkedListService.reversingTheLinkedList(head);
+		//head = singlyLinkedListService.deleteMiddleElement4thWay(head);
+//		head = singlyLinkedListService.AddOneToLinkedList(head);
+		head = singlyLinkedListService.deleteKthElementFromEnd(head, 3);
 		singlyLinkedListService.displaySinglyLinkedList(head);
-		System.out.println(singlyLinkedListService.nThNodeFromEndOfLinkedList(head, 2));
+		// askByUser();
+		// operations();
+
 	}
 
 	static Node insertAtEndOfList() {
@@ -26,19 +31,19 @@ public class SinglyLinkedListController {
 		return head;
 	}
 
-	static Node askByUser() {
+	static Node askByUserToInsertion() {
 		System.out.println("How many node you want to insert: ");
 		int sizeOfList = scanner.nextInt();
 		int noOfNode = 0;
 		while (noOfNode != sizeOfList) {
-			System.out.println("Please enter " + ++noOfNode + "st data: ");
+			System.out.println("Please enter " + ++noOfNode + " data: ");
 			int val = scanner.nextInt();
 			System.out.println("where you insert it choose options: ");
 			System.out.println("Insert at begging. Press 1");
 			System.out.println("Insert at end, Press 2");
 			System.out.println("Insert at position, Press 3");
-			int posstion = scanner.nextInt();
-			switch (posstion) {
+			int position = scanner.nextInt();
+			switch (position) {
 			case 1:
 				head = singlyLinkedListService.inserNodeAtStarting(head, val);
 				break;
@@ -60,5 +65,62 @@ public class SinglyLinkedListController {
 			}
 		}
 		return head;
+	}
+
+	static void operations() throws Exception {
+		boolean doYouWantToContiueIt = true;
+		do {
+			System.out.println("Please choose your option: ");
+			System.out.println(" Insertion !!, Press 1 ");
+			System.out.println(" Deletion !!, Press 2");
+			System.out.println("Display list, Press 3 ");
+			System.out.println("Size of List, Press 4");
+			int operation = scanner.nextInt();
+			switch (operation) {
+			case 1:
+				askByUserToInsertion();
+				break;
+
+			case 2:
+				askByUserToDeletion();
+				break;
+			case 3:
+				singlyLinkedListService.displaySinglyLinkedList(head);
+				break;
+			case 4:
+				System.out.println(singlyLinkedListService.size());
+				break;
+			default:
+				break;
+			}
+			System.out.println(" Do you want to continue, Press 'y' for YES else press any button ");
+			doYouWantToContiueIt = scanner.next().equals("y");
+		} while (doYouWantToContiueIt);
+	}
+
+	private static void askByUserToDeletion() throws Exception {
+		System.out.println("where you delete it choose options: ");
+		System.out.println("at begging. Press 1");
+		System.out.println("end, Press 2");
+		System.out.println("position, Press 3");
+		int position = scanner.nextInt();
+		switch (position) {
+		case 1:
+			head = singlyLinkedListService.deletionAtStartOfLinkedList(head);
+			break;
+		case 2:
+			head = singlyLinkedListService.deletionAtEnd(head);
+			break;
+		case 3:
+			System.out.println("Please enter position: ");
+			int location = scanner.nextInt();
+
+			head = singlyLinkedListService.deletionAtPosition(head, location);
+			break;
+
+		default:
+			break;
+		}
+
 	}
 }

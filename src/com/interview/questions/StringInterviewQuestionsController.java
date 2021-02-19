@@ -13,11 +13,11 @@ public class StringInterviewQuestionsController {
 
 		String s4 = new String("Naveen"); // stored at 003
 		System.out.println(s1 == s4); // compare memory locations ( 001 == 003 ) // false
-		System.out.println(s1.equals(s4)); // compate values ( Naveen == Naveen ); / / true
+		System.out.println(s1.equals(s4)); // compare values ( Naveen == Naveen ); / / true
 
 		String s5 = new String("Naveen"); // stored at 004
 		System.out.println(s5 == s4); // compare memory locations ( 004 == 003 ) // false
-		System.out.println(s5.equals(s4)); // compate values ( Naveen == Naveen ); // true;
+		System.out.println(s5.equals(s4)); // compare values ( Naveen == Naveen ); // true;
 		
 		int value = 65;
 		int ch = 'a';

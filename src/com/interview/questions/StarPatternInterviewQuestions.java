@@ -2,7 +2,7 @@ package com.interview.questions;
 
 public class StarPatternInterviewQuestions {
 	public static void main(String[] args) {
-        
+
 		int n = 6;
 		getLogic(n);
 		printLeftTrangle(n);
@@ -20,7 +20,7 @@ public class StarPatternInterviewQuestions {
 				System.out.print("(" + i + ", " + j + ") | ");
 			}
 			System.out.println();
-		    System.out.print("-----------------------------------------------------");
+			System.out.print("-----------------------------------------------------");
 			System.out.println();
 		}
 	}
@@ -90,6 +90,34 @@ public class StarPatternInterviewQuestions {
 					System.out.print("* ");
 				} else {
 					System.out.print("  ");
+				}
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * 
+	 * // * // ** // *** // ***** // ******
+	 * 
+	 * 
+	 * @param size
+	 */
+
+	public static void display(int size) {
+
+		for (int i = 1; i <= size; i++) {
+			if (i < 4) {
+				System.out.print(" ");
+			}
+			for (int j = size; j >= 1; j--) {
+				if (i < j) {
+					System.out.print(" ");
+				} else {
+					if (i >= 4 && i == j) {
+						System.out.print("*");
+					}
+					System.out.print("*");
 				}
 			}
 			System.out.println();

@@ -4,23 +4,40 @@ import java.util.Arrays;
 
 public class TwoPointerService {
 
+	// O(SizelogSize + O(logSize) * 0(size);
 	public int kthSmallestDifference2ndWay(int[] arr, int size, int k) {
-		int diff = 0;
-
-		Arrays.sort(arr);
-
-		int[] diffArr = new int[size];
-		int prevValue = 0;
-		for (int i = 1; i < size; i++) {
-			diff = arr[prevValue] - arr[i];
-			diffArr[prevValue] = absolute(diff);
-			prevValue++;
+		Arrays.sort(arr); // O(SizelogSize);
+		int smallestDistance = 0;
+		int largestDistance = arr[size - 1] - arr[0];
+		while (smallestDistance < largestDistance) { // O(logSize)
+			int mid = smallestDistance + (largestDistance - smallestDistance) / 2;
+			int totalPairDiffernceLessThanOrEqualToMid = findTotalPairDiffernceLessThanOrEqualToMid(arr, size, mid); // O(size)
+			if (totalPairDiffernceLessThanOrEqualToMid >= k) {
+				largestDistance = mid;
+			} else {
+				smallestDistance = mid + 1;
+			}
 		}
-		Arrays.sort(diffArr);
-
-		return diffArr[k];
+		return smallestDistance;
 	}
 
+	private int findTotalPairDiffernceLessThanOrEqualToMid(int[] arr, int size, int mid) {
+		int j = 1;
+		int totalPair = 0;
+		for (int i = 0; i < size; i++) { // O(Size)
+			// below while loop traverse only once. Not traverse every time with above for
+			// loop
+			// so time complexity of this function is O(size) + o(size) = 2* size = O(Size);
+			while (j < size && arr[j] - arr[i] <= mid) { // O(Size)
+				j++;
+			}
+			j--;
+			totalPair += j - i;
+		}
+		return totalPair;
+	}
+
+	// n^2 + n log n
 	public int kthSmallestDifference1stWay(int[] arr, int size, int k) {
 		int smallestDiff = 0;
 
@@ -32,18 +49,18 @@ public class TwoPointerService {
 		// i.e 2, 3, 4, 5
 		int sumOfNthNumber = (size - 1) / 2 * (2 + size);
 
-		int diffArr[] = new int[sumOfNthNumber];
+		int[] diffArr = new int[sumOfNthNumber];
 
 		int diffArrSize = 0;
-		for (int i = 0; i < size - 1; i++) {
-			for (int j = i + 1; j < size; j++) {
+		for (int i = 0; i < size - 1; i++) { // n
+			for (int j = i + 1; j < size; j++) { // n^2
 				int diff = arr[i] - arr[j];
 				diffArr[diffArrSize] = this.absolute(diff);
 				diffArrSize++;
 			}
 		}
 
-		Arrays.sort(diffArr);
+		Arrays.sort(diffArr); // n log n
 		smallestDiff = diffArr[k];
 
 		return smallestDiff;

@@ -10,15 +10,33 @@ import com.two.pointer.and.three.pointer.service.TwoPointerService;
 
 public class TwoPointerController {
 	static Scanner scanner = new Scanner(System.in);
-	static TwoPointerService twoPointerService = new TwoPointerService();
+	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	static TwoPointerService twoPointerService=  new TwoPointerService();
 
 	public static void main(String[] args) throws IOException {
-		getInputWithTestCase1();
+		// getInputWithTestCase1();
+		getInputWithBufferReader1DArrays();
 	}
 
-	private static void getInputWithTestCase() throws IOException {
-		TwoPointerService twoPointerService = new TwoPointerService();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	static void getInputWithBufferReader1DArrays() throws IOException {
+		int testCase = Integer.parseInt(reader.readLine());
+		while (testCase-- > 0) {
+			String[] readLine = reader.readLine().split(" ");
+			int size = Integer.parseInt(readLine[0]);
+			int k = Integer.parseInt(readLine[1]);
+			readLine = reader.readLine().split(" ");
+			int[] arr = new int[size];
+			for (int i = 0; i < size; i++) {
+				arr[i] = Integer.parseInt(readLine[i]);
+			}
+
+			// int[] squaredArray = twoPointerService.getSquaredSortedArray(arr);
+			// twoPointerService.displayArray(squaredArray);
+			System.out.println(twoPointerService.kthSmallestDifference2ndWay(arr, size, k));
+		}
+	}
+
+	private static void getInputWithTestCaseWithBufferedReader() throws IOException {
 		String[] readLine = reader.readLine().split(" ");
 		int row = Integer.parseInt(readLine[0]);
 		int col = Integer.parseInt(readLine[1]);

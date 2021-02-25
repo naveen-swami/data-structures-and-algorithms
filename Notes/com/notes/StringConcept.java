@@ -43,6 +43,9 @@ class Main {
 		System.out.println("Abc" + 10);
 		System.out.println("Abc" + 10 + 20);
 		System.out.println(10 + 20 +"Abc");
+		
+		
+		
 		// arr[0] //get element at 0th index
 		// arr[2] = 5; //set or update an element at 2nd index
 

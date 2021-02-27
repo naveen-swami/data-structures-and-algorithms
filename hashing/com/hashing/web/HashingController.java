@@ -1,6 +1,7 @@
 package com.hashing.web;
 
-
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest3Service;
@@ -14,7 +15,11 @@ public class HashingController {
 		// int num = scan.nextInt();
 		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
 		// oneDArrayTest();
-		twoDArrayTest();
+		// twoDArrayTest();
+
+		List<Integer> list = null;
+		list.add(5);
+		System.out.println(list);
 	}
 
 	public static void oneDArrayTest() {

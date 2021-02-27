@@ -4,6 +4,50 @@ import java.util.Arrays;
 
 public class TwoPointerService {
 
+	public long countTriplets2ndWay(int[] arr, int size, int k) {
+		Arrays.sort(arr);
+		long countTriplets = 0;
+		int i = 0;
+		int j = 2;
+		while (j < size) {
+			if (i == j - 1) {
+				j++;
+			} else if (arr[j] - arr[i] > k) {
+				i++;
+			} else { // arr[j] - arr[i] <=k
+				int n = j - i;
+				countTriplets += (n * (n - 1)) / 2;
+				j++;
+			}
+		}
+		return countTriplets;
+
+	}
+
+	public long countTriplets(int[] arr, int size, int k) {
+		Arrays.sort(arr);
+		long countTriplets = 0;
+		int j = 2;
+		for (int i = 0; i < size - 2; i++) {
+			while (j < size && arr[j] - arr[i] <= k) {
+				j++;
+			}
+			j--;
+
+			int n = j - i;
+			if (n >= 2) {
+				// combination formula = nCr = n! / r!(n-r)! , here n = j - i and r = 2
+				// so, (n * (n - 1)) / 2
+				countTriplets += (n * (n - 1)) / 2;
+				j++;
+			}
+		}
+
+		return countTriplets;
+
+	}
+
+	// https://www.youtube.com/watch?v=ym93rTBR4j8&ab_channel=codeExplainer
 	// O(SizelogSize + O(logSize) * 0(size);
 	public int kthSmallestDifference2ndWay(int[] arr, int size, int k) {
 		Arrays.sort(arr); // O(SizelogSize);

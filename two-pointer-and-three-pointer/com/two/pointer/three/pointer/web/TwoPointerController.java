@@ -11,11 +11,25 @@ import com.two.pointer.and.three.pointer.service.TwoPointerService;
 public class TwoPointerController {
 	static Scanner scanner = new Scanner(System.in);
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	static TwoPointerService twoPointerService=  new TwoPointerService();
+	static TwoPointerService twoPointerService = new TwoPointerService();
 
 	public static void main(String[] args) throws IOException {
+		inputWithOutTestCaseWithBufferReader1DArrays();
 		// getInputWithTestCase1();
-		getInputWithBufferReader1DArrays();
+		// getInputWithBufferReader1DArrays();
+	}
+
+	static void inputWithOutTestCaseWithBufferReader1DArrays() throws IOException {
+		String[] readLine = reader.readLine().split(" ");
+		int size = Integer.parseInt(readLine[0]);
+		int k = Integer.parseInt(readLine[1]);
+		readLine = reader.readLine().split(" ");
+		int[] arr = new int[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = Integer.parseInt(readLine[i]);
+		}
+
+		System.out.println(twoPointerService.countTriplets2ndWay(arr, size, k));
 	}
 
 	static void getInputWithBufferReader1DArrays() throws IOException {
@@ -32,7 +46,8 @@ public class TwoPointerController {
 
 			// int[] squaredArray = twoPointerService.getSquaredSortedArray(arr);
 			// twoPointerService.displayArray(squaredArray);
-			System.out.println(twoPointerService.kthSmallestDifference2ndWay(arr, size, k));
+			// System.out.println(twoPointerService.kthSmallestDifference2ndWay(arr, size,
+			// k));
 		}
 	}
 

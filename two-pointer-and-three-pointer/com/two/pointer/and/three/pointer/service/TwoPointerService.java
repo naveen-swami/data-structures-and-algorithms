@@ -4,6 +4,42 @@ import java.util.Arrays;
 
 public class TwoPointerService {
 
+	public int closestToX(int[] arr1, int[] arr2, int size, int x) {
+		int closestDistance = Integer.MAX_VALUE;
+		Arrays.sort(arr2);
+
+		for (int val : arr1) {
+			int needToCheck = Math.abs(x - val);
+			int distance = findClosestDistance(arr2, size, needToCheck);
+			if (closestDistance > distance) {
+				closestDistance = distance;
+			}
+		}
+
+		return closestDistance;
+	}
+
+	private int findClosestDistance(int[] arr, int size, int needToCheck) {
+		int l = 0;
+		int r = size - 1;
+		int minDiff = Integer.MAX_VALUE;
+		while (l <= r) {
+			int mid = l + (r - l) / 2;
+			if (mid == needToCheck) {
+				return 0;
+			} else if (arr[mid] > needToCheck) {
+				r = mid - 1;
+			} else {
+				l = mid + 1;
+			}
+			if (minDiff > Math.abs(arr[mid] - needToCheck)) {
+				minDiff = Math.abs(arr[mid] - needToCheck);
+			}
+		}
+
+		return minDiff;
+	}
+
 	public long countTriplets2ndWay(int[] arr, int size, int k) {
 		Arrays.sort(arr);
 		long countTriplets = 0;

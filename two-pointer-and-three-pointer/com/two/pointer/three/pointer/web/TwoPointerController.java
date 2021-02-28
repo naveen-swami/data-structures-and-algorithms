@@ -14,22 +14,30 @@ public class TwoPointerController {
 	static TwoPointerService twoPointerService = new TwoPointerService();
 
 	public static void main(String[] args) throws IOException {
-		inputWithOutTestCaseWithBufferReader1DArrays();
+		 inputWithOutTestCaseWithBufferReader1DArrays();
 		// getInputWithTestCase1();
 		// getInputWithBufferReader1DArrays();
+	}
+
+	static int[] getOneDArrayUsingBufferedReader(int size) throws IOException {
+		int[] arr = new int[size];
+		String[] readLine = reader.readLine().split(" ");
+		for (int i = 0; i < size; i++) {
+			arr[i] = Integer.parseInt(readLine[i]);
+		}
+		return arr;
 	}
 
 	static void inputWithOutTestCaseWithBufferReader1DArrays() throws IOException {
 		String[] readLine = reader.readLine().split(" ");
 		int size = Integer.parseInt(readLine[0]);
-		int k = Integer.parseInt(readLine[1]);
-		readLine = reader.readLine().split(" ");
-		int[] arr = new int[size];
-		for (int i = 0; i < size; i++) {
-			arr[i] = Integer.parseInt(readLine[i]);
-		}
+		// int k = Integer.parseInt(readLine[1]);
+		int[] arr1 = getOneDArrayUsingBufferedReader(size);
+		int[] arr2 = getOneDArrayUsingBufferedReader(size);
+		int x = Integer.parseInt(reader.readLine());
 
-		System.out.println(twoPointerService.countTriplets2ndWay(arr, size, k));
+		System.out.println(twoPointerService.closestToX(arr1, arr2, size, x));
+		// System.out.println(twoPointerService.countTriplets2ndWay(arr, size, k));
 	}
 
 	static void getInputWithBufferReader1DArrays() throws IOException {

@@ -3,17 +3,21 @@ package com.contest.web;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest3Service;
+import com.contest.service.DSAContest7Service;
 
 public class DSAContest7Controller {
 
 	static Scanner scan = new Scanner(System.in);
-	static DSAContest3Service dsaContest3Service = new DSAContest3Service();
 
 	public static void main(String[] args) {
-		// int num = scan.nextInt();
-		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
+		int size = scan.nextInt();
+		int k = scan.nextInt();
+		scan.nextLine();
+		String str = scan.nextLine();
+		System.out.println(DSAContest7Service.zeroWindow(str, size, k));
+		// System.out.println(DSAContest7Service.calculateNoOfFactor(num));
 		// oneDArrayTest();
-		twoDArrayTest();
+		// twoDArrayTest();
 	}
 
 	public static void oneDArrayTest() {
@@ -22,8 +26,7 @@ public class DSAContest7Controller {
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-		System.out.println(dsaContest3Service.divideArrayToMakeEqualBinaryNumber(arr));
-
+		System.out.println(DSAContest7Service.countDuplicateNumber(arr, size));
 	}
 
 	public static void twoDArrayTest() {
@@ -34,7 +37,6 @@ public class DSAContest7Controller {
 				cordinates[i][j] = scan.nextInt();
 			}
 		}
-		System.out.println(dsaContest3Service.smallestRectangle(cordinates));
 	}
 
 }

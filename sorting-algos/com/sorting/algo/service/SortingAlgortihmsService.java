@@ -1,16 +1,48 @@
 package com.sorting.algo.service;
 
 public class SortingAlgortihmsService {
-	
+
+	public int[] mergeTwoArrays(int[] arr1, int[] arr2, int size1, int size2) {
+		int[] mergetwoArray = new int[size1 + size2];
+
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		while (i < size1 && j < size2) {
+			if (arr1[i] < arr2[j]) {
+				mergetwoArray[k] = arr1[i];
+				i++;
+			} else { // arr1[i] > arr2[j]
+				mergetwoArray[k] = arr2[j];
+				j++;
+			}
+			k++;
+		}
+
+		while (i < size1) {
+			mergetwoArray[k] = arr1[i];
+			i++;
+			k++;
+		}
+
+		while (j < size2) {
+			mergetwoArray[k] = arr2[j];
+			j++;
+			k++;
+		}
+
+		return mergetwoArray;
+	}
+
 	// Binary search algo
-	public boolean checkIfNumberHave(int[]arr, int n, int find) {
+	public boolean checkIfNumberHave(int[] arr, int n, int find) {
 		int start = 0;
 		int end = n - 1;
-		while(start <= end) {
+		while (start <= end) {
 			int mid = start + ((end - start) / 2);
-			if(arr[mid] == find) {
+			if (arr[mid] == find) {
 				return true;
-			} else if(arr[mid] > find) {
+			} else if (arr[mid] > find) {
 				end = mid - 1;
 			} else {
 				start = mid + 1;
@@ -18,12 +50,11 @@ public class SortingAlgortihmsService {
 		}
 		return false;
 	}
-	
-	
+
 	public void swap(int[] arr, int x, int y) {
-	   int temp = arr[x];
-	   arr[x] = arr[y];
-	   arr[y] = temp;
+		int temp = arr[x];
+		arr[x] = arr[y];
+		arr[y] = temp;
 	}
 
 	public void selectionSort(int[] arr, int size) {
@@ -36,7 +67,7 @@ public class SortingAlgortihmsService {
 				}
 				j++;
 			}
-			if(minIndex != i) {
+			if (minIndex != i) {
 				this.swap(arr, i, minIndex);
 			}
 		}

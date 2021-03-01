@@ -9,15 +9,26 @@ public class SortingAlgorithmsController {
 	static SortingAlgortihmsService sortingAlgortihmsService = new SortingAlgortihmsService();
 
 	public static void main(String[] args) {
-		takeInputsWithTestCases();
+		// takeInputsWithTestCases();
+		withOutTestCase();
 
+	}
+
+	static void withOutTestCase() {
+		int size1 = scanner.nextInt();
+		int size2 = scanner.nextInt();
+		int[] arr1 = insertValueIntoArray(size1);
+		int[] arr2 = insertValueIntoArray(size2);
+		int[] mergeArray = sortingAlgortihmsService.mergeTwoArrays(arr1, arr2, size1, size2);
+		sortingAlgortihmsService.display(mergeArray);
 	}
 
 	static void takeInputsWithTestCases() {
 		int testCases = scanner.nextInt();
 		while (testCases-- > 0) {
 			int findNumber = scanner.nextInt();
-			int[] arr = insertValueIntoArray();
+			int size = scanner.nextInt();
+			int[] arr = insertValueIntoArray(size);
 			// sortingAlgortihmsService.display(arr);
 			// sortingAlgortihmsService.bubbleSort(arr, arr.length);
 			sortingAlgortihmsService.insertionSort(arr, arr.length);
@@ -30,9 +41,8 @@ public class SortingAlgorithmsController {
 		}
 	}
 
-	static int[] insertValueIntoArray() {
-		int size = scanner.nextInt();
-		int arr[] = new int[size];
+	static int[] insertValueIntoArray(int size) {
+		int[] arr = new int[size];
 		for (int i = 0; i < size; i++) {
 			arr[i] = scanner.nextInt();
 		}

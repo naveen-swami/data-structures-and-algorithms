@@ -4,6 +4,73 @@ import java.util.Arrays;
 
 public class TwoPointerService {
 
+	public int tripletWithSum2ndWay(int[] arr, int size, int sum) { // O(n^2)
+		int countTriplets = 0;
+		Arrays.sort(arr);
+
+		for (int i = 0; i < size - 2; i++) {
+			int s = i + 1;
+			int e = size - 1;
+			countTriplets += check2ndAnd3rdNumber(arr, i, s, e, sum);
+		}
+
+		return countTriplets;
+	}
+
+	private int check2ndAnd3rdNumber(int[] arr, int i, int s, int e, int sum) {
+		int count = 0;
+
+		while (s < e) {
+			if (arr[i] + arr[s] + arr[e] == sum) {
+				count++;
+			}
+			if (sum < arr[i] + arr[e] + arr[s]) {
+				e--;
+			} else { // sum > arr[e] + arr[s]
+				s++;
+			}
+		}
+
+		return count;
+	}
+
+	public int tripletWithSum(int[] arr, int size, int k) { // O (n^2 * logn)
+		int countTriplets = 0;
+
+		for (int i = 0; i < size - 2; i++) {
+			for (int j = i + 1; j < size - 1; j++) {
+				int sum = arr[i] + arr[j];
+				if (k - sum < 1 || k - sum < arr[j + 1]) {
+					break;
+				}
+				int start = j + 1;
+				int end = size - 1;
+				boolean isRequiredSum = findThirdNumber(arr, start, end, k - sum);
+				if (isRequiredSum) {
+					countTriplets++;
+				}
+			}
+		}
+
+		return countTriplets;
+	}
+
+	private boolean findThirdNumber(int[] arr, int start, int end, int k) {
+
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
+			if (arr[mid] == k) {
+				return true;
+			} else if (arr[mid] > k) {
+				end = mid - 1;
+			} else {
+				start = mid + 1;
+			}
+		}
+
+		return false;
+	}
+
 	public int closestToX(int[] arr1, int[] arr2, int size, int x) {
 		int closestDistance = Integer.MAX_VALUE;
 		Arrays.sort(arr2);

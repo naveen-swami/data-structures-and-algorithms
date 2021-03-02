@@ -2,6 +2,51 @@ package com.sorting.algo.service;
 
 public class SortingAlgortihmsService {
 
+	public int[] mergeSort(int[] arr, int start, int end) {
+		int[] sortedArray = new int[end - start + 1];
+
+		if (start == end) {
+			sortedArray[0] = arr[start];
+			return sortedArray;
+		}
+
+		int mid = start + (end - start) / 2;
+		int[] sortedArray1 = mergeSort(arr, start, mid);
+		int[] sortedArray2 = mergeSort(arr, mid + 1, end);
+		sortedArray = mergeTwoArrays(sortedArray1, sortedArray2, sortedArray1.length, sortedArray2.length) ;
+
+		return sortedArray;
+	}
+
+	public int[] merge(int[] arr, int start, int mid, int end) {
+		int[] mergeArray = new int[end - start + 1];
+		int left = start;
+		int right = mid + 1;
+		int k = 0;
+		while (left <= mid && right <= end) {
+			if (arr[left] < arr[right]) {
+				mergeArray[k] = arr[left];
+				left++;
+			} else {
+				mergeArray[k] = arr[right];
+				right++;
+			}
+			k++;
+		}
+
+		while (left <= mid) {
+			mergeArray[k] = arr[left];
+			left++;
+			k++;
+		}
+		while (right <= end) {
+			mergeArray[k] = arr[right];
+			right++;
+			k++;
+		}
+		return mergeArray;
+	}
+
 	public int[] mergeTwoArrays(int[] arr1, int[] arr2, int size1, int size2) {
 		int[] mergetwoArray = new int[size1 + size2];
 

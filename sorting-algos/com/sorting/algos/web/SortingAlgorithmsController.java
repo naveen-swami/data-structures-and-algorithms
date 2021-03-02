@@ -16,10 +16,10 @@ public class SortingAlgorithmsController {
 
 	static void withOutTestCase() {
 		int size1 = scanner.nextInt();
-		int size2 = scanner.nextInt();
+		// int size2 = scanner.nextInt();
 		int[] arr1 = insertValueIntoArray(size1);
-		int[] arr2 = insertValueIntoArray(size2);
-		int[] mergeArray = sortingAlgortihmsService.mergeTwoArrays(arr1, arr2, size1, size2);
+		// int[] arr2 = insertValueIntoArray(size2);
+		int[] mergeArray = sortingAlgortihmsService.mergeSort(arr1, 0, arr1.length -1);
 		sortingAlgortihmsService.display(mergeArray);
 	}
 

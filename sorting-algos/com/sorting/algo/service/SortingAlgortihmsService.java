@@ -2,23 +2,21 @@ package com.sorting.algo.service;
 
 public class SortingAlgortihmsService {
 
-	public int[] mergeSort(int[] arr, int start, int end) {
-		int[] sortedArray = new int[end - start + 1];
+	public int[] implementMergeSort(int[] arr, int start, int end) {
 
-		if (start == end) {
-			sortedArray[0] = arr[start];
-			return sortedArray;
+		if (start == end) { // base case
+			return arr;
 		}
 
 		int mid = start + (end - start) / 2;
-		int[] sortedArray1 = mergeSort(arr, start, mid);
-		int[] sortedArray2 = mergeSort(arr, mid + 1, end);
-		sortedArray = mergeTwoArrays(sortedArray1, sortedArray2, sortedArray1.length, sortedArray2.length) ;
+		implementMergeSort(arr, start, mid);
+		implementMergeSort(arr, mid + 1, end);
+		merge(arr, start, mid, end);
 
-		return sortedArray;
+		return arr;
 	}
 
-	public int[] merge(int[] arr, int start, int mid, int end) {
+	public void merge(int[] arr, int start, int mid, int end) {
 		int[] mergeArray = new int[end - start + 1];
 		int left = start;
 		int right = mid + 1;
@@ -44,7 +42,28 @@ public class SortingAlgortihmsService {
 			right++;
 			k++;
 		}
-		return mergeArray;
+
+		// copy mergeArray to arr
+		for (int i = 0; i < mergeArray.length; i++, start++) {
+			arr[start] = mergeArray[i];
+		}
+
+	}
+
+	public int[] mergeSort(int[] arr, int start, int end) {
+		int[] sortedArray = new int[end - start + 1];
+
+		if (start == end) {
+			sortedArray[0] = arr[start];
+			return sortedArray;
+		}
+
+		int mid = start + (end - start) / 2;
+		int[] sortedArray1 = mergeSort(arr, start, mid);
+		int[] sortedArray2 = mergeSort(arr, mid + 1, end);
+		sortedArray = mergeTwoArrays(sortedArray1, sortedArray2, sortedArray1.length, sortedArray2.length);
+
+		return sortedArray;
 	}
 
 	public int[] mergeTwoArrays(int[] arr1, int[] arr2, int size1, int size2) {

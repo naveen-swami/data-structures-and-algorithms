@@ -2,9 +2,40 @@ package com.sorting.algo.service;
 
 public class SortingAlgortihmsService {
 
+	public int[] quickSort(int[] arr, int start, int end) {
+
+		if (start >= end) { // base case
+			return arr;
+		}
+
+		int pivotIdx = partition(arr, start, end);
+		quickSort(arr, start, pivotIdx - 1); //left half
+		quickSort(arr, pivotIdx + 1, end); // right half
+
+		return arr;
+	}
+
+	private int partition(int[] arr, int start, int end) {
+
+		int pivot = end;
+		int endIdx = end - 1;
+		while (start <= endIdx) {
+			if (arr[start] <= arr[pivot]) {
+				start++;
+			} else { // arr[start] > pivot
+				swap(arr, start, endIdx);
+				endIdx--;
+			}
+		}
+
+		swap(arr, start, pivot);
+
+		return start;
+	}
+
 	public int[] implementMergeSort(int[] arr, int start, int end) {
 
-		if (start == end) { // base case
+		if (start >= end) { // base case
 			return arr;
 		}
 

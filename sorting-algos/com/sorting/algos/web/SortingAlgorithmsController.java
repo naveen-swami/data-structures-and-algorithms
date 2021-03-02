@@ -19,7 +19,7 @@ public class SortingAlgorithmsController {
 		// int size2 = scanner.nextInt();
 		int[] arr1 = insertValueIntoArray(size1);
 		// int[] arr2 = insertValueIntoArray(size2);
-		int[] mergeArray = sortingAlgortihmsService.implementMergeSort(arr1, 0, arr1.length -1);
+		int[] mergeArray = sortingAlgortihmsService.quickSort(arr1, 0, arr1.length -1);
 		sortingAlgortihmsService.display(mergeArray);
 	}
 

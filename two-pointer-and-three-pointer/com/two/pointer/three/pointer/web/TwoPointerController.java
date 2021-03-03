@@ -34,9 +34,11 @@ public class TwoPointerController {
 		// int k = Integer.parseInt(readLine[1]);
 		int[] arr = getOneDArrayUsingBufferedReader(size);
 		// int[] arr2 = getOneDArrayUsingBufferedReader(size);
-		int k = Integer.parseInt(reader.readLine());
+		// int k = Integer.parseInt(reader.readLine());
 
-		System.out.println(twoPointerService.tripletWithSum2ndWay(arr, size, k));
+		twoPointerService.sortedBinaryArray(arr, size);
+		twoPointerService.displayArray(arr);
+		// System.out.println(twoPointerService.tripletWithSum2ndWay(arr, size, k));
 		// System.out.println(twoPointerService.closestToX(arr1, arr2, size, x));
 		// System.out.println(twoPointerService.countTriplets2ndWay(arr, size, k));
 	}

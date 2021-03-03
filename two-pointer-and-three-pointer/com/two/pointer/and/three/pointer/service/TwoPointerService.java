@@ -2,6 +2,8 @@ package com.two.pointer.and.three.pointer.service;
 
 import java.util.Arrays;
 
+import com.sun.org.apache.bcel.internal.generic.SWAP;
+
 public class TwoPointerService {
 
 	public int tripletWithSum2ndWay(int[] arr, int size, int sum) { // O(n^2)
@@ -237,6 +239,35 @@ public class TwoPointerService {
 			index--;
 		}
 		return arrCopy;
+	}
+
+	/**
+	 * It sorted binary array (0 1 1 0 0 1 ) to (0 0 0 1 1 1)
+	 * 
+	 * @param arr
+	 * @param size
+	 * @return
+	 */
+	public int[] sortedBinaryArray(int[] arr, int size) {
+
+		int start = 0;
+		int end = size - 1;
+
+		while (start < end) {
+			if (arr[start] == 0) {
+				start++;
+			} else if (arr[end] == 1) {
+				end--;
+			} else { // swap
+				int temp = arr[start];
+				arr[start] = arr[end];
+				arr[end] = temp;
+				start++;
+				end--;
+			}
+		}
+
+		return arr;
 	}
 
 	public void displayArray(int[] arr) {

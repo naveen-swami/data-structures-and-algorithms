@@ -2,20 +2,29 @@ package com.sorting.algo.service;
 
 public class SortingAlgortihmsService {
 
-	public int[] quickSort(int[] arr, int start, int end) {
+	public int[] quickSort(int[] arr, int start, int end) { // O(nlogn) if pivot choose correct otherwise O(n^2)
 
 		if (start >= end) { // base case
 			return arr;
 		}
 
 		int pivotIdx = partition(arr, start, end);
-		quickSort(arr, start, pivotIdx - 1); //left half
+		quickSort(arr, start, pivotIdx - 1); // left half
 		quickSort(arr, pivotIdx + 1, end); // right half
 
 		return arr;
 	}
 
-	private int partition(int[] arr, int start, int end) {
+	/**
+	 * 
+	 * It return parition element which divide the array into two parts.
+	 * 
+	 * @param arr
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	private int partition(int[] arr, int start, int end) { // n
 
 		int pivot = end;
 		int endIdx = end - 1;
@@ -33,21 +42,29 @@ public class SortingAlgortihmsService {
 		return start;
 	}
 
-	public int[] implementMergeSort(int[] arr, int start, int end) {
+	public int[] implementMergeSort(int[] arr, int start, int end) { // nlog n
 
 		if (start >= end) { // base case
 			return arr;
 		}
 
 		int mid = start + (end - start) / 2;
-		implementMergeSort(arr, start, mid);
-		implementMergeSort(arr, mid + 1, end);
-		merge(arr, start, mid, end);
+		implementMergeSort(arr, start, mid); // left half
+		implementMergeSort(arr, mid + 1, end); // right half
+		merge(arr, start, mid, end); // it will merge left half and right half
 
 		return arr;
 	}
 
-	public void merge(int[] arr, int start, int mid, int end) {
+	/**
+	 * It merge two parts of array into one part
+	 * 
+	 * @param arr
+	 * @param start
+	 * @param mid
+	 * @param end
+	 */
+	public void merge(int[] arr, int start, int mid, int end) { // n
 		int[] mergeArray = new int[end - start + 1];
 		int left = start;
 		int right = mid + 1;
@@ -81,7 +98,7 @@ public class SortingAlgortihmsService {
 
 	}
 
-	public int[] mergeSort(int[] arr, int start, int end) {
+	public int[] mergeSort(int[] arr, int start, int end) { // n*logn = nlogn
 		int[] sortedArray = new int[end - start + 1];
 
 		if (start == end) {
@@ -97,7 +114,7 @@ public class SortingAlgortihmsService {
 		return sortedArray;
 	}
 
-	public int[] mergeTwoArrays(int[] arr1, int[] arr2, int size1, int size2) {
+	public int[] mergeTwoArrays(int[] arr1, int[] arr2, int size1, int size2) { // n
 		int[] mergetwoArray = new int[size1 + size2];
 
 		int i = 0;
@@ -152,7 +169,7 @@ public class SortingAlgortihmsService {
 		arr[y] = temp;
 	}
 
-	public void selectionSort(int[] arr, int size) {
+	public void selectionSort(int[] arr, int size) { // n^2
 		for (int i = 0; i < size - 1; i++) {
 			int minIndex = i;
 			int j = i + 1;
@@ -168,7 +185,7 @@ public class SortingAlgortihmsService {
 		}
 	}
 
-	public void insertionSort(int[] arr, int size) {
+	public void insertionSort(int[] arr, int size) { // n^2
 		for (int i = 1; i < size; i++) {
 			int current = arr[i];
 			int j = i - 1;
@@ -186,7 +203,7 @@ public class SortingAlgortihmsService {
 		}
 	}
 
-	public void bubbleSort(int[] arr, int size) {
+	public void bubbleSort(int[] arr, int size) { // n^2
 		for (int i = 1; i < size; i++) {
 			int j = i - 1;
 			while (j >= 0 && arr[j] > arr[j + 1]) {

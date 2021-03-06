@@ -1,6 +1,10 @@
 package com.complexity.analysis.service;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class ComplexityService {
 
@@ -15,12 +19,66 @@ public class ComplexityService {
 		return isItPrimeNumber(power);
 	}
 
-	private int calculateMthPowerOfNumber(int num, int m) {
+	/**
+	 * 
+	 * if n = 125 and m = 3 then it will return 5 because 5*5*5 = 125
+	 * 
+	 * @param n
+	 * @param m
+	 * @return
+	 */
+	public int findMthPowerNearOrEqualToN(int n, int m) {
+		int x = 1;
+
+		return x;
+	}
+
+	public Map<Integer, Integer> findAllFactor(int num) {
+		int i = 2;
+		Map<Integer, Integer> allFactorMap = new HashMap<>();
+		while (num % 2 == 0 && num > 1) {
+			allFactorMap.put(i, allFactorMap.getOrDefault(i, 0) + 1);
+			num = num / 2;
+		}
+		// i = 1 + 2 because i+ 2 will always odd number
+		// if i greater then math.squr(num). it is prime number so print that number directly
+		for (i = 3; num > 1 && i <= Math.sqrt(num); i = i + 2) {
+			while (num % i == 0) {
+				allFactorMap.put(i, allFactorMap.getOrDefault(i, 0) + 1);
+				num = num / i;
+			}
+		}
+		if(num> 2) {
+			allFactorMap.put(num, 1);
+		}
+		return allFactorMap;
+	}
+
+	public static long largestPrimeFactor(int num) {
+		int i = 2;
+		int largestPrimeFactor = 0;
+		while (num % 2 == 0) {
+			num /= 2;
+		}
+		largestPrimeFactor = 2;
+		for (i = 3; num > 1 && i <= Math.sqrt(num); i = i + 2) {
+			while (num % i == 0) {
+				num /= i;
+			}
+			largestPrimeFactor = i;
+		}
+		if(num > 2) {
+			largestPrimeFactor = num;
+		}
+
+		return largestPrimeFactor;
+	}
+
+	public int calculateMthPowerOfNumber(int num, int m) {
 		int pow = 1;
-		int count = 0;
+		int count = 1;
 		while (pow < num) {
-			pow *= m;
-			count++;
+			pow = (int) Math.pow(++count, m);
 		}
 		return num == pow ? count : 0;
 	}

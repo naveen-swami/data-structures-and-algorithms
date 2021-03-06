@@ -1,28 +1,36 @@
 package com.contest.web;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest3Service;
+import com.contest.service.DSAContest8Service;
 
 public class DSAContest8Controller {
 
 	static Scanner scan = new Scanner(System.in);
-	static DSAContest3Service dsaContest3Service = new DSAContest3Service();
+	static DSAContest8Service dsaContest8Service = new DSAContest8Service();
+	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-	public static void main(String[] args) {
-		// int num = scan.nextInt();
-		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
+	public static void main(String[] args) throws IOException {
+
+		inputWithOutTestCaseWithBufferReader1DArrays();
 		// oneDArrayTest();
-		twoDArrayTest();
 	}
 
 	public static void oneDArrayTest() {
 		int size = scan.nextInt();
-		int[] arr = new int[size];
+		long k = scan.nextLong();
+		long[] arr = new long[size];
 		for (int i = 0; i < size; i++) {
-			arr[i] = scan.nextInt();
+			arr[i] = scan.nextLong();
 		}
-		System.out.println(dsaContest3Service.divideArrayToMakeEqualBinaryNumber(arr));
+
+		System.out.println(DSAContest8Service.isEqualToK(arr, size, 0, k, 0));
 
 	}
 
@@ -34,7 +42,46 @@ public class DSAContest8Controller {
 				cordinates[i][j] = scan.nextInt();
 			}
 		}
-		System.out.println(dsaContest3Service.smallestRectangle(cordinates));
+	}
+
+	// (int maxChocolateCandyTake, int maxOrangeCandyTake,
+	// int chocolateCandyTotal, int orangeCandyTotal, int unknowwnCandyTotal, int[]
+	// chocoHappinessArr,
+	// int[] orangeHappinessArr, int[] unknownHappinessArr) {
+	static void inputWithOutTestCaseWithBufferReader1DArrays() throws IOException {
+		String[] readLineStr = reader.readLine().split(" ");
+		int maxChocolateCandyTake = Integer.parseInt(readLineStr[0]);
+		int maxOrangeCandyTake = Integer.parseInt(readLineStr[1]);
+		int chocolateCandyTotal = Integer.parseInt(readLineStr[2]);
+		int orangeCandyTotal = Integer.parseInt(readLineStr[3]);
+		int unknowwnCandyTotal = Integer.parseInt(readLineStr[4]);
+		PriorityQueue<Integer> chocoHappinessPQ = getHeapUsingBufferedReader(chocolateCandyTotal);
+		PriorityQueue<Integer> orangeHappinessPQ = getHeapUsingBufferedReader(orangeCandyTotal);
+		PriorityQueue<Integer> unknownHappinessPQ = getHeapUsingBufferedReader(unknowwnCandyTotal);
+
+		System.out.println(DSAContest8Service.countHappinessOfOrangeAndChocolateCandy(maxChocolateCandyTake,
+				maxOrangeCandyTake, chocolateCandyTotal, orangeCandyTotal, unknowwnCandyTotal, chocoHappinessPQ,
+				orangeHappinessPQ, unknownHappinessPQ));
+
+	}
+
+	static PriorityQueue<Integer> getHeapUsingBufferedReader(int size) throws IOException {
+		PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
+
+		String[] readLine = reader.readLine().split(" ");
+		for (int i = 0; i < size; i++) {
+			priorityQueue.add(Integer.parseInt(readLine[i]));
+		}
+		return priorityQueue;
+	}
+
+	static int[] getOneDArrayUsingBufferedReader(int size) throws IOException {
+		int[] arr = new int[size];
+		String[] readLine = reader.readLine().split(" ");
+		for (int i = 0; i < size; i++) {
+			arr[i] = Integer.parseInt(readLine[i]);
+		}
+		return arr;
 	}
 
 }

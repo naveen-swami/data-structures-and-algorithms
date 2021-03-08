@@ -6,6 +6,22 @@ import com.sun.org.apache.bcel.internal.generic.SWAP;
 
 public class TwoPointerService {
 
+	public int minCutTree(int[] treeHighArr, int size, int k) {
+		int minCutTreeToMaxCollectWood = Integer.MAX_VALUE;
+		int i = 1;
+		while (minCutTreeToMaxCollectWood > k) {
+			minCutTreeToMaxCollectWood = 0;
+			for (int treeHigh : treeHighArr) {
+				if (treeHigh > i) {
+					minCutTreeToMaxCollectWood += treeHigh - i;
+				}
+			}
+			i++;
+		}
+
+		return i - 1;
+	}
+
 	public int tripletWithSum2ndWay(int[] arr, int size, int sum) { // O(n^2)
 		int countTriplets = 0;
 		Arrays.sort(arr);

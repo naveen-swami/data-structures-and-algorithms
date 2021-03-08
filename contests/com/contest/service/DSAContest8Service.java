@@ -3,6 +3,8 @@ package com.contest.service;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
 public class DSAContest8Service {
 
 	public static long countHappinessOfOrangeAndChocolateCandy(int maxChocolateCandyTake, int maxOrangeCandyTake,
@@ -10,38 +12,39 @@ public class DSAContest8Service {
 			PriorityQueue<Integer> chocoHappinessPQ, PriorityQueue<Integer> orangeHappinessPQ,
 			PriorityQueue<Integer> unknownHappinessPQ) {
 		int maxHappniness = 0;
-		while (maxChocolateCandyTake-- > 0) {
-			if (!chocoHappinessPQ.isEmpty()) {
-				if (!unknownHappinessPQ.isEmpty()) {
-					if (chocoHappinessPQ.peek() > unknownHappinessPQ.peek()) {
-						maxHappniness += chocoHappinessPQ.poll();
-					} else {
-						maxHappniness += unknownHappinessPQ.poll();
-					}
-				} else {
-					maxHappniness += chocoHappinessPQ.peek();
-				}
-			} else {
-				maxHappniness += unknownHappinessPQ.poll();
-			}
-		}
+		int maxHappniness2 = 0;
 
-		while (maxOrangeCandyTake-- > 0) {
-			if (!orangeHappinessPQ.isEmpty()) {
+		PriorityQueue<Integer> chocoHappinessCopyPQ = new PriorityQueue<>(chocoHappinessPQ);
+		PriorityQueue<Integer> orangeHappinessCopyPQ = new PriorityQueue<>(orangeHappinessPQ);
+		PriorityQueue<Integer> unknownHappinessCopyPQ = new PriorityQueue<>(unknownHappinessPQ);
+
+		maxHappniness += getMaxHappiness(maxChocolateCandyTake, chocoHappinessPQ, unknownHappinessPQ)
+				+ getMaxHappiness(maxOrangeCandyTake, orangeHappinessPQ, unknownHappinessPQ);
+
+		maxHappniness2 += getMaxHappiness(maxOrangeCandyTake, orangeHappinessCopyPQ, unknownHappinessCopyPQ)
+				+ getMaxHappiness(maxChocolateCandyTake, chocoHappinessCopyPQ, unknownHappinessCopyPQ);
+		return Math.max(maxHappniness, maxHappniness2);
+	}
+
+	public static long getMaxHappiness(int maxCandyTake, PriorityQueue<Integer> candyHappinessPQ,
+			PriorityQueue<Integer> unknownHappinessPQ) {
+		long happinessSum = 0;
+		while (maxCandyTake-- > 0) {
+			if (!candyHappinessPQ.isEmpty()) {
 				if (!unknownHappinessPQ.isEmpty()) {
-					if (orangeHappinessPQ.peek() > unknownHappinessPQ.peek()) {
-						maxHappniness += orangeHappinessPQ.poll();
+					if (candyHappinessPQ.peek() > unknownHappinessPQ.peek()) {
+						happinessSum += candyHappinessPQ.poll();
 					} else {
-						maxHappniness += unknownHappinessPQ.poll();
+						happinessSum += unknownHappinessPQ.poll();
 					}
 				} else {
-					maxHappniness += orangeHappinessPQ.peek();
+					happinessSum += candyHappinessPQ.poll();
 				}
 			} else {
-				maxHappniness += unknownHappinessPQ.poll();
+				happinessSum += unknownHappinessPQ.poll();
 			}
 		}
-		return maxHappniness;
+		return happinessSum;
 	}
 
 	public static boolean isEqualToK(long[] arr, int size, int index, long k, long sum) {

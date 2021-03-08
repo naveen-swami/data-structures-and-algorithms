@@ -16,13 +16,13 @@ public class MainController {
 		Assignments assignment = new Assignments();
 		// take input
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter no. : ");
-		 int n = scan.nextInt();
-		 int[] arr = new int[n];
-		 for(int i = 0; i < n; i++) {
-			arr[i] = scan.nextInt();
-		 }
-		 System.out.println(assignment.findFirstPostiveMissingNumber(arr));
+//		System.out.println("Enter no. : ");
+//		 int n = scan.nextInt();
+//		 int[] arr = new int[n];
+//		 for(int i = 0; i < n; i++) {
+//			arr[i] = scan.nextInt();
+//		 }
+//		 System.out.println(assignment.findFirstPostiveMissingNumber(arr));
 		// //int result = assignment.printArmStrongNo(n);
 		//
 		// System.out.println(assignment.getOpTimes(n));
@@ -80,8 +80,9 @@ public class MainController {
 //	    	     System.out.println(downloadTime/8);
 		
 //		long n = scan.nextLong();
-//		assignment.getMinimumChangeAmount(n);
-//		System.out.println(assignment.getMinimumChangeAmount(n));
+		int n = scan.nextInt();
+//		assignment.getMinimumChangeAmountSecondMehod(n);
+		System.out.println(assignment.getMinimumChangeAmount(n));
 		
 //		int[][] arr;
 //		arr = new int[2][2];

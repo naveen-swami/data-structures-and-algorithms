@@ -31,13 +31,15 @@ public class TwoPointerController {
 	static void inputWithOutTestCaseWithBufferReader1DArrays() throws IOException {
 		String[] readLineStr = reader.readLine().split(" ");
 		int size = Integer.parseInt(readLineStr[0]);
-		// int k = Integer.parseInt(readLine[1]);
+		int k = Integer.parseInt(readLineStr[1]);
 		int[] arr = getOneDArrayUsingBufferedReader(size);
+		System.out.println(twoPointerService.minCutTree(arr, size, k));
+
 		// int[] arr2 = getOneDArrayUsingBufferedReader(size);
 		// int k = Integer.parseInt(reader.readLine());
-
-		twoPointerService.sortedBinaryArray(arr, size);
-		twoPointerService.displayArray(arr);
+		//
+		// twoPointerService.sortedBinaryArray(arr, size);
+		// twoPointerService.displayArray(arr);
 		// System.out.println(twoPointerService.tripletWithSum2ndWay(arr, size, k));
 		// System.out.println(twoPointerService.closestToX(arr1, arr2, size, x));
 		// System.out.println(twoPointerService.countTriplets2ndWay(arr, size, k));

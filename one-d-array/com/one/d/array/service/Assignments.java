@@ -86,16 +86,36 @@ public class Assignments {
 //			System.out.println();
 //		}
 	}
+	/**
+	 * You have 500 and 200 rapes notes. find minimum change amount given by shopkeeper to you. So how many you gives notes to shopkeeper
+	 * 
+	 * @param n
+	 * @return
+	 */
+   public int getMinimumChangeAmount(int n) {
+	   if(n <= 200) {
+		   return  200 - n;
+	   } 
+	   if(n <= 400 ) {
+		   return 400 - n;
+	   }
+	   
+	   // HCF of 500 and 200 is 100
+//	   n = n % 100; 
+	   
+	   return ((100 - n % 100) % 100);
+	   
+   }
 	
-	
-	public void getMinimumChangeAmount(long n) {
-//		int[] notes = new int[] {500,200};
-		
-		
+	public void getMinimumChangeAmountSecondMehod(long n) {
 		System.err.println( "second Ans: " + (100-n%100)%100);
 		
+		if(n < 200) {
+			System.out.println(200 - n);
+			return;
+		}
+		
 		if(n >= 500) {
-//			temp = (int) (n/500);
 			n -= (n/500)*500;
 		}
 		boolean test = false;
@@ -104,11 +124,10 @@ public class Assignments {
 			test =true;
 		} 
 		if(n >= 200) {
-//			temp = (int) (n/200);
 			n -= (n/200)*200;
 		}
 		if(!test && n > 0) {
-			n = 200 -n ;
+			n = (200 - n) % 100  ;
 		}
 		System.out.println("My Ans: " + n);
 		

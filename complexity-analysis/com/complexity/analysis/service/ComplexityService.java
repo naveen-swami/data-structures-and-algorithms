@@ -2,9 +2,8 @@ package com.complexity.analysis.service;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class ComplexityService {
 
@@ -12,7 +11,7 @@ public class ComplexityService {
 		if (m == 1) {
 			return isItPrimeNumber(num);
 		}
-		int power = this.calculateMthPowerOfNumber(num, m);
+		int power = this.findMthPowerNearOrEqualToN(num, m);
 		if (power == 0) { // not Mth power
 			return false;
 		}
@@ -28,9 +27,12 @@ public class ComplexityService {
 	 * @return
 	 */
 	public int findMthPowerNearOrEqualToN(int n, int m) {
-		int x = 1;
-
-		return x;
+		Map<Integer, Integer> factorMap = findAllFactor(n);
+		Entry<Integer, Integer> iterator = factorMap.entrySet().iterator().next();
+		if (factorMap.size() > 1 || iterator.getValue() != m || Math.pow(iterator.getKey(), iterator.getValue()) != n) {
+			return 0;
+		}
+		return iterator.getKey();
 	}
 
 	public Map<Integer, Integer> findAllFactor(int num) {
@@ -41,14 +43,15 @@ public class ComplexityService {
 			num = num / 2;
 		}
 		// i = 1 + 2 because i+ 2 will always odd number
-		// if i greater then math.squr(num). it is prime number so print that number directly
+		// if i greater then math.squr(num). it is prime number so print that number
+		// directly
 		for (i = 3; num > 1 && i <= Math.sqrt(num); i = i + 2) {
 			while (num % i == 0) {
 				allFactorMap.put(i, allFactorMap.getOrDefault(i, 0) + 1);
 				num = num / i;
 			}
 		}
-		if(num> 2) {
+		if (num > 2) {
 			allFactorMap.put(num, 1);
 		}
 		return allFactorMap;
@@ -67,7 +70,7 @@ public class ComplexityService {
 			}
 			largestPrimeFactor = i;
 		}
-		if(num > 2) {
+		if (num > 2) {
 			largestPrimeFactor = num;
 		}
 

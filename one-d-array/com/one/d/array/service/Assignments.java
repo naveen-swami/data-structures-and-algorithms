@@ -5,6 +5,21 @@ import java.util.Scanner;
 
 public class Assignments {
 	
+	public int findSecondLargestNumber(int[] arr) {
+		int max = Integer.MIN_VALUE;
+		int secondMax = Integer.MIN_VALUE;
+
+		for (int element : arr) {
+			if (element >= max) {
+				secondMax = max;
+				max = element;
+			} else if (secondMax < element) {
+				secondMax = element;
+			}
+		}
+
+		return secondMax;
+	}
     
 	public int findFirstPostiveMissingNumber(int[] arr) {
 		// first approach

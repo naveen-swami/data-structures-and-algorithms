@@ -286,8 +286,8 @@ public class TwoPointerService {
 		return arr;
 	}
 
-	public void displayArray(int[] arr) {
-		for (int value : arr) {
+	public < T > void displayArray(T[] arr) {
+		for (T value : arr) {
 			System.out.print(value + " ");
 		}
 		System.out.println();

@@ -14,9 +14,11 @@ public class StringController {
 	public static void main(String[] args) {
 
 		String str = scanner.nextLine();
-		// String str2 = scanner.nextLine();
+		 String str2 = scanner.nextLine();
 
-		System.out.println(stringService.isAllAlphabetPresent(str));
+		System.out.println(stringService.isOneStringSubStringOfPermutationOfAnotherStirng(str, str2, ""));
+//		stringService.printAllSubString(str);
+//		System.out.println(stringService.isAllAlphabetPresent(str));
 		// System.out.println(stringService.flamesGame(str, str2));
 
 		// System.out.println(stringService.compressString(str));
@@ -26,7 +28,7 @@ public class StringController {
 		// Arrays.sort(strArr);
 		// str1 = String.valueOf(strArr);
 
-		// stringService.printAllPermutation(str1, "");
+//		 stringService.printAllPermutation(str, "");
 		// System.out.println(stringService.check2Rotation(str1, str2));
 
 	}

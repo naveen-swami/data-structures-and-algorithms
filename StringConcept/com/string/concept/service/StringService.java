@@ -6,6 +6,30 @@ import java.util.Map.Entry;
 
 public class StringService {
 
+	public boolean isOneStringSubStringOfPermutationOfAnotherStirng(String str1, String str2, String op) {
+
+		if (str1.isEmpty() && str2.contains(op)) {
+			return true;
+		}
+
+		for (int i = 0; i < str1.length(); i++) {
+			if (isOneStringSubStringOfPermutationOfAnotherStirng(str1.substring(0, i) + str1.substring(i + 1), str2,
+					op + str1.charAt(i))) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void printAllSubString(String str) {
+		for (int i = 0; i < str.length(); i++) {
+			for (int j = i + 1; j <= str.length(); j++) {
+				System.out.println(str.substring(i, j));
+			}
+		}
+	}
+
 	public int isAllAlphabetPresent(String str) {
 		str = str.toLowerCase();
 		int countLetter = 0;

@@ -2,22 +2,22 @@ package com.contest.web;
 
 import java.util.Scanner;
 
-import com.contest.service.DSAContest3Service;
-import com.contest.service.DSAContest9Service;
+import com.contest.service.DSAContest10Service;
 
-public class DSAContest9Controller {
+public class DSAContest14Controller {
 
 	static Scanner scan = new Scanner(System.in);
-	static DSAContest3Service dsaContest3Service = new DSAContest3Service();
 
 	public static void main(String[] args) {
-		// int size = scan.nextInt();
-		// scan.nextLine();
-		// while(size--> 0) {
+		int size = scan.nextInt();
 
-		String str = scan.nextLine();
-		System.out.println(DSAContest9Service.hamingDistance(str));
-		// System.err.println(DSAContest9Service.changeIntoPseudoLatinWord(str));
+		System.out.println(DSAContest10Service.convertToBase9(size));
+
+		// scan.nextLine();
+		// oneDArrayTest();
+		// while (size-- > 0) {
+		//
+		// String str = scan.nextLine();
 		// }
 		// System.out.println(DSAContest9Service.countEvenPlaceVowel(str));
 
@@ -33,8 +33,7 @@ public class DSAContest9Controller {
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-		System.out.println(dsaContest3Service.divideArrayToMakeEqualBinaryNumber(arr));
-
+		System.out.println(DSAContest10Service.isConsecutiveArray(arr) ? "Yes" : "No");
 	}
 
 	public static void twoDArrayTest() {
@@ -45,7 +44,5 @@ public class DSAContest9Controller {
 				cordinates[i][j] = scan.nextInt();
 			}
 		}
-		System.out.println(dsaContest3Service.smallestRectangle(cordinates));
 	}
-
 }

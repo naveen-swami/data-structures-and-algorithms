@@ -15,6 +15,8 @@ public class DSAContest8Controller {
 	static Scanner scan = new Scanner(System.in);
 	static DSAContest8Service dsaContest8Service = new DSAContest8Service();
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	static final Integer HEAP_MIN = 1;
+	static final Integer HEAP_MAX = 2;
 
 	public static void main(String[] args) throws IOException {
 
@@ -55,24 +57,30 @@ public class DSAContest8Controller {
 		int chocolateCandyTotal = Integer.parseInt(readLineStr[2]);
 		int orangeCandyTotal = Integer.parseInt(readLineStr[3]);
 		int unknowwnCandyTotal = Integer.parseInt(readLineStr[4]);
-		PriorityQueue<Integer> chocoHappinessPQ = getHeapUsingBufferedReader(chocolateCandyTotal);
-		PriorityQueue<Integer> orangeHappinessPQ = getHeapUsingBufferedReader(orangeCandyTotal);
-		PriorityQueue<Integer> unknownHappinessPQ = getHeapUsingBufferedReader(unknowwnCandyTotal);
+		PriorityQueue<Integer> chocoHappinessPQ = getHeapUsingBufferedReader(chocolateCandyTotal, HEAP_MIN);
+		PriorityQueue<Integer> orangeHappinessPQ = getHeapUsingBufferedReader(orangeCandyTotal, HEAP_MIN);
+		PriorityQueue<Integer> unknownHappinessPQ = getHeapUsingBufferedReader(unknowwnCandyTotal, HEAP_MAX);
 
-		System.out.println(DSAContest8Service.countHappinessOfOrangeAndChocolateCandy(maxChocolateCandyTake,
+		System.out.println(DSAContest8Service.countHappinessOfOrangeAndChocolateCandy1(maxChocolateCandyTake,
 				maxOrangeCandyTake, chocolateCandyTotal, orangeCandyTotal, unknowwnCandyTotal, chocoHappinessPQ,
 				orangeHappinessPQ, unknownHappinessPQ));
 
 	}
 
-	static PriorityQueue<Integer> getHeapUsingBufferedReader(int size) throws IOException {
-		PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
+	static PriorityQueue<Integer> getHeapUsingBufferedReader(int size, int category) throws IOException {
+		PriorityQueue<Integer> priorityQueue;
+		if (category == HEAP_MIN) {
+			priorityQueue = new PriorityQueue<>(); // min heap
+		} else {
+			priorityQueue = new PriorityQueue<>(Collections.reverseOrder()); // max heap
+		}
 
 		String[] readLine = reader.readLine().split(" ");
 		for (int i = 0; i < size; i++) {
 			priorityQueue.add(Integer.parseInt(readLine[i]));
 		}
 		return priorityQueue;
+
 	}
 
 	static int[] getOneDArrayUsingBufferedReader(int size) throws IOException {

@@ -7,6 +7,61 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 public class DSAContest8Service {
 
+	public static long countHappinessOfOrangeAndChocolateCandy1(int maxChocolateCandyTake, int maxOrangeCandyTake,
+			int chocolateCandyTotal, int orangeCandyTotal, int unknowwnCandyTotal,
+			PriorityQueue<Integer> chocoHappinessPQ, PriorityQueue<Integer> orangeHappinessPQ,
+			PriorityQueue<Integer> unknownHappinessPQ) {
+		long maxHappniness = 0;
+
+		removeUnUsedCandy(chocoHappinessPQ, maxChocolateCandyTake);
+		removeUnUsedCandy(orangeHappinessPQ, maxOrangeCandyTake);
+		while (chocoHappinessPQ.size() < maxChocolateCandyTake) {
+			chocoHappinessPQ.add(unknownHappinessPQ.poll());
+		}
+		while (orangeHappinessPQ.size() < maxOrangeCandyTake) {
+			orangeHappinessPQ.add(unknownHappinessPQ.poll());
+		}
+
+		while (!unknownHappinessPQ.isEmpty() && !chocoHappinessPQ.isEmpty() && !orangeHappinessPQ.isEmpty()
+				&& (unknownHappinessPQ.peek() > chocoHappinessPQ.peek()
+						|| unknownHappinessPQ.peek() > orangeHappinessPQ.peek())) {
+			if (chocoHappinessPQ.peek() < orangeHappinessPQ.peek()) {
+				chocoHappinessPQ.remove();
+				maxHappniness += unknownHappinessPQ.poll();
+			} else {
+				orangeHappinessPQ.remove();
+				maxHappniness += unknownHappinessPQ.poll();
+			}
+		}
+
+		while (!unknownHappinessPQ.isEmpty() && !chocoHappinessPQ.isEmpty()
+				&& unknownHappinessPQ.peek() > chocoHappinessPQ.peek()) {
+			chocoHappinessPQ.remove();
+			maxHappniness += unknownHappinessPQ.poll();
+		}
+
+		while (!unknownHappinessPQ.isEmpty() && !orangeHappinessPQ.isEmpty()
+				&& unknownHappinessPQ.peek() > orangeHappinessPQ.peek()) {
+			orangeHappinessPQ.remove();
+			maxHappniness += unknownHappinessPQ.poll();
+		}
+
+		while (!chocoHappinessPQ.isEmpty()) {
+			maxHappniness += chocoHappinessPQ.poll();
+		}
+		while (!orangeHappinessPQ.isEmpty()) {
+			maxHappniness += orangeHappinessPQ.poll();
+		}
+
+		return maxHappniness;
+	}
+
+	public static void removeUnUsedCandy(PriorityQueue<Integer> candyPQ, int neededCandy) {
+		while (candyPQ.size() > neededCandy) {
+			candyPQ.remove();
+		}
+	}
+
 	public static long countHappinessOfOrangeAndChocolateCandy(int maxChocolateCandyTake, int maxOrangeCandyTake,
 			int chocolateCandyTotal, int orangeCandyTotal, int unknowwnCandyTotal,
 			PriorityQueue<Integer> chocoHappinessPQ, PriorityQueue<Integer> orangeHappinessPQ,

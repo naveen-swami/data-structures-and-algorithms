@@ -6,6 +6,18 @@ import java.util.List;
 
 public class DSAContest9Service {
 	
+	public static String hamingDistance(String str) {
+		String hamingDistanceStr = new String();
+	    for(int i = 0; i < str.length(); i++) {
+	    	if(str.charAt(i) != 'a') {
+	    		hamingDistanceStr = str.substring(0,i) + 'a' + str.substring(i+1);
+	    		return hamingDistanceStr;
+	    	}
+	    }
+	    return	str.substring(0, str.length() - 1) + 'b';
+		
+	}
+	
 	public static int mergeTreeCost(List<List<Integer>> edgeList, int nodes) {
 		int minCost = 0;
 		

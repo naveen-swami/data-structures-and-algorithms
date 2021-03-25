@@ -24,7 +24,7 @@ public class DSAContestNumber4Controller {
 		}
 
 		System.out.println(
-				dsaContestNumber4Service.minimumTimeRquiredToEatAtLeastPDishesh(timeToFinshSingleDish, dishes));
+				DSAContestNumber4Service.minimumTimeRquiredToEatAtLeastPDishesh2ndWay(timeToFinshSingleDish, dishes));
 
 	}
 

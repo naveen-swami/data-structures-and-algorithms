@@ -3,19 +3,38 @@ package com.contest.service;
 import java.util.Arrays;
 
 public class DSAContestNumber4Service {
-	
-	
-	public int minimumTimeRquiredToEatAtLeastPDishesh2ndWay(int[] memberTimeArr, long dishes) {
-		int minimumTimeRquired = 0;
-		
 
+	public static long minimumTimeRquiredToEatAtLeastPDishesh2ndWay(int[] memberTimeArr, long dishes) {
 
-		return minimumTimeRquired;
+		int totalDishes = 0;
+		//long minimumTimeRquired = 0;
+		long i = 1;
+		long j = dishes;
+
+		while (i < j) {
+			long mid = i + (j - i) / 2;
+			totalDishes = 0;
+			for (int timeTakenByMember : memberTimeArr) {
+				totalDishes += mid / timeTakenByMember;
+			}
+			if (totalDishes == dishes) {
+				return mid;
+			} else if (totalDishes > dishes) {
+//				if(minimumTimeRquired > totalDishes) {
+//					minimumTimeRquired = mid;
+//				}
+				j = mid;
+			} else {
+				i = mid + 1;
+			}
+		}
+
+		return i;
 	}
 
 	public int minimumTimeRquiredToEatAtLeastPDishesh(int[] memberTimeArr, long dishes) {
 		int minimumTimeRquired = 0;
-        
+
 		while (dishes > 0) {
 			minimumTimeRquired++;
 			for (int timeTakenByMember : memberTimeArr) {

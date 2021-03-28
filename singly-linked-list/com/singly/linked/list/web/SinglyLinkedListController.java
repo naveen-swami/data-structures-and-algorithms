@@ -4,19 +4,24 @@ import java.util.Scanner;
 
 import com.singly.linked.list.service.Node;
 import com.singly.linked.list.service.SinglyLinkedListDeletionService;
+import com.singly.linked.list.service.SinglyLinkedListProblemService;
 
 public class SinglyLinkedListController {
 	static Scanner scanner = new Scanner(System.in);
-	static SinglyLinkedListDeletionService singlyLinkedListService = new SinglyLinkedListDeletionService();
+	static SinglyLinkedListProblemService singlyLinkedListService = new SinglyLinkedListProblemService();
 	static Node head = null;
 
 	public static void main(String[] args) throws Exception {
 		insertAtEndOfList();
+		head = singlyLinkedListService.swapKthNodeFromEndAndFront(head, 4, 2);
+	    singlyLinkedListService.displaySinglyLinkedList(head);
+		
+//		System.out.println(singlyLinkedListService.isPalindrome(head));
 //		head = singlyLinkedListService.reversingTheLinkedList(head);
 		//head = singlyLinkedListService.deleteMiddleElement4thWay(head);
 //		head = singlyLinkedListService.AddOneToLinkedList(head);
-		head = singlyLinkedListService.deleteKthElementFromEnd(head, 3);
-		singlyLinkedListService.displaySinglyLinkedList(head);
+//		head = singlyLinkedListService.deleteKthElementFromEnd(head, 3);
+//		singlyLinkedListService.displaySinglyLinkedList(head);
 		// askByUser();
 		// operations();
 

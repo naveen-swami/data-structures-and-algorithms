@@ -7,6 +7,32 @@ import java.util.Map.Entry;
 
 public class ComplexityService {
 
+	/**
+	 * 
+	 * x^n % mod = (x * x^n-1) % mod <br>
+	 * if n is even then x^n % mod = (x^n/2 * x^n/2) % mod <br>
+	 * if n is odd then x^n % mod = (x % mod * x^n-1 % mod ) % mod <br>
+	 * if n is 0 then 1
+	 * 
+	 * @param n
+	 * @param p
+	 * @param mod
+	 * @return
+	 */
+	public long getPower(long x, long n, int mod) {
+		
+		if(n == 0) {
+			return 1;
+		}
+		
+		if((n & 1) == 0) { // even
+			long result = (getPower(x, n/2, mod)) % mod;
+			return (result * result) % mod;
+		} else { // odd
+			return (x * getPower(x, n - 1, mod) % mod) % mod;
+		}
+	}
+
 	public boolean checkIfMthPowerOfNumberIsPrime(int num, int m) {
 		if (m == 1) {
 			return isItPrimeNumber(num);

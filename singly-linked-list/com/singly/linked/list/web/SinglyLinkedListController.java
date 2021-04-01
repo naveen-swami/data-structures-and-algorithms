@@ -13,9 +13,12 @@ public class SinglyLinkedListController {
 
 	public static void main(String[] args) throws Exception {
 		insertAtEndOfList();
-		head = singlyLinkedListService.swapKthNodeFromEndAndFront(head, 4, 2);
+		head = singlyLinkedListService.reverseAlternateKthElemetns(head, 3);
+//		head = singlyLinkedListService.reversekthNodes(head, 2);
+//		head = singlyLinkedListService.swapKthNodeFromEndAndFront(head, 4, 2);
 	    singlyLinkedListService.displaySinglyLinkedList(head);
 		
+//		head = singlyLinkedListService.reverseLinkedList1(head);
 //		System.out.println(singlyLinkedListService.isPalindrome(head));
 //		head = singlyLinkedListService.reversingTheLinkedList(head);
 		//head = singlyLinkedListService.deleteMiddleElement4thWay(head);

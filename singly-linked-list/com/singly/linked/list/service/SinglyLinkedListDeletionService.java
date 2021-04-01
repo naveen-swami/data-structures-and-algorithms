@@ -46,6 +46,22 @@ public class SinglyLinkedListDeletionService extends SinglyLinkedListInsertionSe
 
 		return head;
 	}
+	
+	public Node reverseLinkedList1(Node head) {
+		
+		Node prev = null;
+		Node current = head;
+		Node next;
+		
+		while(current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		
+		return prev;
+	}
 
 	public Node reversingTheLinkedList(Node head) {
 
@@ -61,6 +77,14 @@ public class SinglyLinkedListDeletionService extends SinglyLinkedListInsertionSe
 		return head;
 	}
 
+	/** 
+	 * 
+	 * Solved using train
+	 * 
+	 * @param head
+	 * @param k
+	 * @return
+	 */
 	public Node deleteKthElementFromEnd(Node head, int k) {
 
 		Node anjana = head;

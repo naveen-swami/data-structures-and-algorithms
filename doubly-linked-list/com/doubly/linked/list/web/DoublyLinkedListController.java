@@ -12,7 +12,11 @@ public class DoublyLinkedListController {
 
 	public static void main(String[] args) throws Exception {
 		head = insertAtEndOfList();
-		head = doublyLinkedListService.insetAtPostion(head, 10, 2);
+		head  = doublyLinkedListService.reverseDoublyLinkedList(head);
+//		head = doublyLinkedListService.makeCircularLinkedList(head);
+//		int k = scanner.nextInt();
+//		doublyLinkedListService.deleteEveryKthNodeFromCircularLinkedList(head, k);
+//		head = doublyLinkedListService.insetAtPostion(head, 10, 2);
 		doublyLinkedListService.display(head);
 
 	}

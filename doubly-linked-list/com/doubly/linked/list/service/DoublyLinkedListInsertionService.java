@@ -91,6 +91,16 @@ public class DoublyLinkedListInsertionService {
 		return head;
 	}
 
+	public Node makeCircularLinkedList(Node head) {
+
+		Node temp = head;
+		while (temp.next != null) {
+			temp = temp.next;
+		}
+		temp.next = head;
+		return head;
+	}
+
 	public void display(Node head) {
 		Node temp = head;
 		while (temp != null) {

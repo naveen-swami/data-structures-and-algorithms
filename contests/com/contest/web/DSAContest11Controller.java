@@ -1,17 +1,41 @@
 package com.contest.web;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest10Service;
+import com.contest.service.DSAContest11Service;
 
 public class DSAContest11Controller {
 
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int size = scan.nextInt();
 
-		System.out.println(DSAContest10Service.convertToBase9(size));
+		// final int max = 15;
+		// Long max = (long) Math.pow(2, 10000);
+		// long[] seq = new long(max);
+		// System.out.printf("The first %d terms of the sequence are:\n", max);
+		// for (int i = 1, n = 0; n < max; ++i) {
+		// Long k = DSAContest11Service.count_divisors(i);
+		// if (k <= max && seq[k - 1] == 0) {
+		// seq[k - 1] = i;
+		// n++;
+		// }
+		// }
+		// System.out.println(Arrays.toString(seq));
+
+		int marks = scan.nextInt();
+		scan.nextLine();
+		String naveen = scan.nextLine();
+		String anjana = scan.nextLine();
+
+		System.out.println(DSAContest11Service.myNaveenMarks(naveen, anjana, marks));
+
+		// int size = scan.nextInt();
+		// long num = scan.nextLong();
+		// System.out.println(DSAContest11Service.maxTicekts(num));
+		// System.out.println(DSAContest10Service.convertToBase9(size));
 
 		// scan.nextLine();
 		// oneDArrayTest();

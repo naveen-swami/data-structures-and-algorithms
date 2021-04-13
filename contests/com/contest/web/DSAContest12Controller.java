@@ -3,15 +3,20 @@ package com.contest.web;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest10Service;
+import com.contest.service.DSAContest12Service;
 
 public class DSAContest12Controller {
 
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int size = scan.nextInt();
+		// long size = scan.nextLong();
+		int num = scan.nextInt();
+		int num2 = scan.nextInt();
 
-		System.out.println(DSAContest10Service.convertToBase9(size));
+		System.out.println(DSAContest12Service.transFormAtoB(num, num2));
+		// System.out.println(DSAContest12Service.removeDigitFromNumber(size));
+		// System.out.println(DSAContest12Service.totallyCount(size));
 
 		// scan.nextLine();
 		// oneDArrayTest();

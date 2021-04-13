@@ -1,37 +1,24 @@
-package com.stack.web;
+package com.queue.web;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest3Service;
-import com.stack.service.SwamiStack;
 
-public class StackController {
+public class QueueController {
 
 	static Scanner scan = new Scanner(System.in);
-	static SwamiStack stack = new SwamiStack();
 
 	public static void main(String[] args) {
-		
-		
+		// int num = scan.nextInt();
+		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
+		// oneDArrayTest();
+		// twoDArrayTest();
 
-		 addIntoStack();
-		 System.out.println(stack.peek());
-		 System.err.println(stack.size());
-		 System.err.println(stack.pop());
-		 System.err.println(stack.peek());
-		 System.err.println(stack.size());
-
-	}
-
-	public static SwamiStack addIntoStack() {
-		int size = scan.nextInt();
-		for (int i = 0; i < size; i++) {
-			stack.push(scan.nextInt());
-		}
-
-		return stack;
+		List<Integer> list = null;
+		list.add(5);
+		System.out.println(list);
 	}
 
 	public static void oneDArrayTest() {

@@ -9,16 +9,34 @@ import com.stack.service.StackService;
 
 public class StackProblemSolverController {
 
-	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	static StackService stackService = new StackService();
+	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-//		int size = Integer.parseInt(reader.readLine());
+		// Integer i = new Integer((int) 88);
+		// int size = Integer.parseInt(reader.readLine());
 		// String[] expressions = reader.readLine().split(" ");
-		String str = reader.readLine();
-		System.out.println(stackService.infixToPostFix(str));
+		// String str = reader.readLine();
+		// System.out.println(stackService.checkBracketOrder(str) ? "YES" : "NO");
+		// System.out.println(stackService.prifixToInfix(str));
+		// System.out.println(stackService.infixToPostFix(str));
 		// System.out.println(stackService.postfixExpression(expressions));
 		// fifaFever();
+		oneDArrayTest();
+	}
+
+	public static void oneDArrayTest() throws NumberFormatException, IOException {
+		int size = Integer.parseInt(reader.readLine());
+		int[] arr = new int[size];
+		String[] strArr = reader.readLine().split(" ");
+		for (int i = 0; i < size; i++) {
+			arr[i] = Integer.parseInt(strArr[i]);
+		}
+
+		stackService.sumleftAndRightPartOfArray(arr, size);
+		// stackService.nearestSmallerElement(arr);
+		// stackService.nextLargerElement(arr);
+
 	}
 
 	/**

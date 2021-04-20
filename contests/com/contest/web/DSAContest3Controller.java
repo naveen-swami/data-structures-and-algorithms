@@ -10,6 +10,8 @@ public class DSAContest3Controller {
 	static DSAContest3Service dsaContest3Service = new DSAContest3Service();
 
 	public static void main(String[] args) {
+		
+		String str = scan.nextLine();
 		// int num = scan.nextInt();
 		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
 		// oneDArrayTest();

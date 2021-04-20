@@ -51,7 +51,7 @@ public class BinarySearchService {
 		for (int i = 0; i < size; i++) {
 			sum += Math.ceil((double) arr[i] / mid);
 		}
-		return sum <= k ? true : false;
+		return sum <= k;
 	}
 
 	public boolean checkIfNumberHave(long[] arr, int n, int find) {

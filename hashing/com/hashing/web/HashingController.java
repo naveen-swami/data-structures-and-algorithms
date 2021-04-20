@@ -5,30 +5,50 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest3Service;
+import com.hashing.service.HashingService;
 
 public class HashingController {
 
 	static Scanner scan = new Scanner(System.in);
-	static DSAContest3Service dsaContest3Service = new DSAContest3Service();
+	static HashingService hashingService = new HashingService();
 
 	public static void main(String[] args) {
 		// int num = scan.nextInt();
 		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
-		// oneDArrayTest();
-		// twoDArrayTest();
+		oneDArrayTest();
+		// oneDArrayTestWithTestCase();
 
-		List<Integer> list = null;
-		list.add(5);
-		System.out.println(list);
+		// List<Integer> list = null;
+		// list.add(5);
+		// System.out.println(list);
+	}
+
+	public static void oneDArrayTestWithTestCase() {
+		int testCase = scan.nextInt();
+		while (testCase-- > 0) {
+			int size = scan.nextInt();
+			int x = scan.nextInt();
+			int[] arr = new int[size];
+			for (int i = 0; i < size; i++) {
+				arr[i] = scan.nextInt();
+			}
+			hashingService.isPairWithGivenSum(arr, x);
+		}
+		// hashingService.largestSubArrayWithZeroSum(size, arr);
+
 	}
 
 	public static void oneDArrayTest() {
 		int size = scan.nextInt();
+		// int x = scan.nextInt();
 		int[] arr = new int[size];
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-		System.out.println(dsaContest3Service.divideArrayToMakeEqualBinaryNumber(arr));
+		hashingService.maximumDistanceBetweenSameElement(arr, size);
+		// hashingService.countSubArrayWithEqual1sAnd0s(size, arr);
+		// hashingService.countPairWithGivenSum(arr, x);
+		// hashingService.largestSubArrayWithZeroSum(size, arr);
 
 	}
 
@@ -40,7 +60,6 @@ public class HashingController {
 				cordinates[i][j] = scan.nextInt();
 			}
 		}
-		System.out.println(dsaContest3Service.smallestRectangle(cordinates));
 	}
 
 }

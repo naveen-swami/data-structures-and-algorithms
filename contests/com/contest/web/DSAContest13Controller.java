@@ -3,15 +3,19 @@ package com.contest.web;
 import java.util.Scanner;
 
 import com.contest.service.DSAContest10Service;
+import com.contest.service.DSAContest13Service;
 
 public class DSAContest13Controller {
 
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int size = scan.nextInt();
+		// int size = scan.nextInt();
+		// Scanner scan = new Scanner(System.in);
 
-		System.out.println(DSAContest10Service.convertToBase9(size));
+		String str = scan.nextLine();
+		DSAContest13Service.gameTime(str);
+		// DSAContest13Service.printCapitalLetter(str);
 
 		// scan.nextLine();
 		// oneDArrayTest();
@@ -33,7 +37,8 @@ public class DSAContest13Controller {
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-		System.out.println(DSAContest10Service.isConsecutiveArray(arr) ? "Yes" : "No");
+		DSAContest13Service.cakeXor(size, arr);
+		// DSAContest13Service.pairSum(arr, size);
 	}
 
 	public static void twoDArrayTest() {

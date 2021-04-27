@@ -1,9 +1,81 @@
 package com.hashing.service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class HashingService {
+
+	/**
+	 * First line of input contains a single integer N, second line of input
+	 * contains N space separated strings. Third line of input contains a single
+	 * integer Q, next Q line contains a single string each.
+	 * 
+	 * Constraints:- 1 < = N < = 1000 1 < = |String| < = 10 1 < = Q < = 100000
+	 * 
+	 * Note:-String will only contain lower case english letters <br>
+	 * Output For each query in a new line print the anagrams in lexicographical
+	 * order separated by spaces.
+	 * 
+	 */
+
+	// Anagram Strings
+	public void arangeSimilarString(int size, String[] strArr, String[] queryStrArr) {
+		Map<String, List<String>> similarStringMap = new HashMap<>();
+
+		for (String str : strArr) {
+			char[] letters = str.toCharArray();
+			Arrays.sort(letters);
+			String sortedString = new String(letters);
+			if (similarStringMap.containsKey(sortedString)) {
+				similarStringMap.get(sortedString).add(str);
+			} else {
+				List<String> anagramList = new LinkedList<>();
+				anagramList.add(str);
+				similarStringMap.put(sortedString, anagramList);
+			}
+		}
+
+		for (String query : queryStrArr) {
+			char[] letters = query.toCharArray();
+			Arrays.sort(letters);
+			String sortedQuery = new String(letters);
+			List<String> anagramList = similarStringMap.get(sortedQuery);
+			if (anagramList == null) {
+				System.out.println(-1);
+				continue;
+			}
+			Collections.sort(anagramList);
+			anagramList.forEach(it -> {
+				System.out.print(it + " ");
+			});
+			System.out.println();
+		}
+	}
+
+	public void countDistinctElementOfSizeK(int[] arr, int k) {
+
+		Map<Integer, Integer> distinctElementMap = new HashMap<>();
+
+		for (int i = 0; i < arr.length; i++) {
+			if (i >= k) {
+				System.out.print(distinctElementMap.size() + " ");
+				int key = arr[i - k];
+				int value = distinctElementMap.get(key);
+				if (value > 1) {
+					distinctElementMap.put(key, value - 1);
+				} else {
+					distinctElementMap.remove(key);
+				}
+			}
+			distinctElementMap.put(arr[i], distinctElementMap.getOrDefault(arr[i], 0) + 1);
+		}
+		System.out.println(distinctElementMap.size());
+
+	}
 
 	public void maximumDistanceBetweenSameElement(int[] arr, int size) {
 		int maximumDistance = 0;

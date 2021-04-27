@@ -3,8 +3,6 @@ package com.contest.service;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 public class DSAContest8Service {
 
 	public static long countHappinessOfOrangeAndChocolateCandy1(int maxChocolateCandyTake, int maxOrangeCandyTake,

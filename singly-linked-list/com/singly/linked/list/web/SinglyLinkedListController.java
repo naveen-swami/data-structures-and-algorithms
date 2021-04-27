@@ -13,15 +13,21 @@ public class SinglyLinkedListController {
 
 	public static void main(String[] args) throws Exception {
 		insertAtEndOfList();
-		head = singlyLinkedListService.reverseAlternateKthElemetns(head, 3);
+//		Node head2 = insertAtEndOfList();
+
+//		head = singlyLinkedListService.mergeSortImpl(head);
+		head = singlyLinkedListService.mergeSortImpl(head, null);
+//		head = singlyLinkedListService.mergeTwoSortedLinkedList(head1, head2);
+
+//		head = singlyLinkedLionstService.reverseAlternateKthElemetns(head, 3);
 //		head = singlyLinkedListService.reversekthNodes(head, 2);
 //		head = singlyLinkedListService.swapKthNodeFromEndAndFront(head, 4, 2);
-	    singlyLinkedListService.displaySinglyLinkedList(head);
-		
+		singlyLinkedListService.displaySinglyLinkedList(head);
+
 //		head = singlyLinkedListService.reverseLinkedList1(head);
 //		System.out.println(singlyLinkedListService.isPalindrome(head));
 //		head = singlyLinkedListService.reversingTheLinkedList(head);
-		//head = singlyLinkedListService.deleteMiddleElement4thWay(head);
+		// head = singlyLinkedListService.deleteMiddleElement4thWay(head);
 //		head = singlyLinkedListService.AddOneToLinkedList(head);
 //		head = singlyLinkedListService.deleteKthElementFromEnd(head, 3);
 //		singlyLinkedListService.displaySinglyLinkedList(head);
@@ -32,6 +38,7 @@ public class SinglyLinkedListController {
 
 	static Node insertAtEndOfList() {
 		int sizeOfList = scanner.nextInt();
+//		Node head1 = null;
 		while (sizeOfList-- > 0) {
 			int val = scanner.nextInt();
 			head = singlyLinkedListService.insertNodeAtEnd(head, val);

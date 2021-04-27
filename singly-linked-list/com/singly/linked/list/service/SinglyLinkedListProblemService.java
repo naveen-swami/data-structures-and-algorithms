@@ -5,6 +5,113 @@ import java.util.Stack;
 public class SinglyLinkedListProblemService extends SinglyLinkedListDeletionService {
 
 	/**
+	 * we have to remove element whose sum is equal to sum Example: list: 1 5 3 1 4
+	 * 2 and sum = 5
+	 * 
+	 * so pair: (1, 4), (2, 3)
+	 * 
+	 * remaining list: 5, 1
+	 * 
+	 * return this list
+	 * 
+	 * WAP to delete the pair of elements in an linked list whose sum is equal to
+	 * the number given and return the remaining list. Values can be repeated and
+	 * the list is unsorted. e.g. list = 1,2,3,4,5,6 Sum = 5 </br>
+	 * 1 + 4 = 5 2 + 3 = 5 </br>
+	 * Remove (1,4) & (2,3) </br>
+	 * Return 5, 6
+	 * 
+	 * @param head
+	 * @param sum
+	 * @return
+	 */
+	public Node removeSumEqualElement(Node head, int sum) {
+
+	      
+		
+		return head;
+	}
+
+	public Node mergeSortImpl(Node head) {
+
+		if (head == null || head.next == null) {
+			return head;
+		}
+
+		Node mid = findMid(head);
+		Node secondHalf = mid.next;
+		mid.next = null;
+		Node first = mergeSortImpl(head);
+		Node second = mergeSortImpl(secondHalf);
+		Node compleList = mergeTwoSortedLinkedList(first, second);
+
+		return compleList;
+	}
+
+	private Node findMid(Node head) {
+
+		Node slow = head;
+		Node fast = head;
+
+		while (fast.next != null && fast.next.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+
+		return slow;
+	}
+
+	public Node mergeTwoSortedLinkedList(Node head1, Node head2) {
+		Node dummyNode = new Node(-1);
+		Node temp = dummyNode;
+
+		while (head1 != null && head2 != null) {
+			if (head1.val < head2.val) {
+				temp.next = head1;
+				head1 = head1.next;
+			} else {
+				temp.next = head2;
+				head2 = head2.next;
+			}
+			temp = temp.next;
+		}
+
+		temp.next = head1 != null ? head1 : head2;
+		return dummyNode.next;
+	}
+
+	public Node mergeSortImpl(Node head, Node tail) {
+
+		if (head == tail) {
+			if (head != null) {
+				return new Node(head.val);
+			}
+			return head;
+		}
+
+		Node mid = findMid1(head, tail);
+
+		Node first = mergeSortImpl(head, mid);
+		Node second = mergeSortImpl(mid.next, tail);
+		Node compleList = mergeTwoSortedLinkedList(first, second);
+
+		return compleList;
+	}
+
+	private Node findMid1(Node head, Node tail) {
+
+		Node slow = head;
+		Node fast = head;
+
+		while (fast != tail && fast.next != tail) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+
+		return slow;
+	}
+
+	/**
 	 * 
 	 * it will reverse every kth elements from linkedList if n = 9 and k = 3 then
 	 * exa: 1 2 3 4 5 6 7 8 9 <br>

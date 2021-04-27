@@ -15,7 +15,8 @@ public class HashingController {
 	public static void main(String[] args) {
 		// int num = scan.nextInt();
 		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
-		oneDArrayTest();
+//		oneDArrayTest();
+		anagramInupt();
 		// oneDArrayTestWithTestCase();
 
 		// List<Integer> list = null;
@@ -38,14 +39,28 @@ public class HashingController {
 
 	}
 
+	public static void anagramInupt() {
+		int size = scan.nextInt();
+		scan.nextLine();
+		String[] strArr = scan.nextLine().split(" ");
+		int querySize = scan.nextInt();
+		String[] queryStrArr = new String[querySize];
+		for (int i = 0; i < querySize; i++) {
+			queryStrArr[i] = scan.next();
+		}
+
+		hashingService.arangeSimilarString(size, strArr, queryStrArr);
+	}
+
 	public static void oneDArrayTest() {
 		int size = scan.nextInt();
-		// int x = scan.nextInt();
+		int x = scan.nextInt();
 		int[] arr = new int[size];
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-		hashingService.maximumDistanceBetweenSameElement(arr, size);
+		hashingService.countDistinctElementOfSizeK(arr, x);
+//		hashingService.maximumDistanceBetweenSameElement(arr, size);
 		// hashingService.countSubArrayWithEqual1sAnd0s(size, arr);
 		// hashingService.countPairWithGivenSum(arr, x);
 		// hashingService.largestSubArrayWithZeroSum(size, arr);

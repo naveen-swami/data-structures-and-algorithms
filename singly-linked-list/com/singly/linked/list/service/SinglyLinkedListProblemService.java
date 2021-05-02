@@ -4,6 +4,60 @@ import java.util.Stack;
 
 public class SinglyLinkedListProblemService extends SinglyLinkedListDeletionService {
 
+//	find element and remove it
+//	 1 ->  5 -> 6 -> 0 -> -5 -> 10
+
+	public Node removeElement(Node head, int x) {
+
+		if (head.val == x) {
+			return head.next;
+		}
+
+		Node temp = head;
+		Node prev = null;
+
+		while (temp != null && temp.val != x) {
+			prev = temp;
+			temp = temp.next;
+		}
+
+		// no element found
+		if (temp == null) {
+			return head;
+		}
+
+		prev.next = temp.next;
+
+		return head;
+	}
+
+// 1 -> -2 -> -3 -> 4 -> -5 
+//op -5 -4 -3 1 4
+	public static Node sortedLinkedListByAcutalValue(Node head) {
+
+		Node temp = head;
+		Node prev = null;
+
+		while (temp != null) {
+
+			Node curr = temp;
+			temp = temp.next;
+			if (curr.val < 0) {
+				curr.next = head;
+				head = curr;
+			} else {
+				if (prev != null) {
+					prev.next = curr;
+				}
+				prev = curr;
+				prev.next = null;
+			}
+		}
+
+		return head;
+
+	}
+
 	/**
 	 * we have to remove element whose sum is equal to sum Example: list: 1 5 3 1 4
 	 * 2 and sum = 5
@@ -27,8 +81,6 @@ public class SinglyLinkedListProblemService extends SinglyLinkedListDeletionServ
 	 */
 	public Node removeSumEqualElement(Node head, int sum) {
 
-	      
-		
 		return head;
 	}
 

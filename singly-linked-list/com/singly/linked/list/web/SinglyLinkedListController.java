@@ -13,10 +13,11 @@ public class SinglyLinkedListController {
 
 	public static void main(String[] args) throws Exception {
 		insertAtEndOfList();
+		head = singlyLinkedListService.removeElement(head, 5);
 //		Node head2 = insertAtEndOfList();
-
+//		SinglyLinkedListProblemService.sortedLinkedListByAcutalValue(head);
 //		head = singlyLinkedListService.mergeSortImpl(head);
-		head = singlyLinkedListService.mergeSortImpl(head, null);
+//		head = singlyLinkedListService.mergeSortImpl(head, null);
 //		head = singlyLinkedListService.mergeTwoSortedLinkedList(head1, head2);
 
 //		head = singlyLinkedLionstService.reverseAlternateKthElemetns(head, 3);

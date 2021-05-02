@@ -10,23 +10,20 @@ import java.util.Scanner;
 
 import com.recursion.service.RecurstionService;
 
-
 public class RecurstionController {
-	
+
+	static RecurstionService recurstionService = new RecurstionService();
+	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	static Scanner scan = new Scanner(System.in);
+
 	public static void main(String[] args) throws IOException {
-		
-		
-	RecurstionService recurstionService = new RecurstionService();
-	
-	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	
+
 //    String values = reader.readLine();
 //	int disks = Integer.parseInt(reader.readLine());
 //    recurstionService.towerOfHanoi(disks, "A", "B", "C");
 //    
 //    System.err.println(recurstionService.coinFlip(values));
-    
-	
+
 //	String[] values = reader.readLine().split(" ");
 //	long[] intArr = new long[num];
 //	
@@ -35,16 +32,16 @@ public class RecurstionController {
 //	}
 //	
 //	System.out.println(recurstionService.happBallon(intArr));
-	
+
 //	recurstionService.printNumInDescresingOrder(num);
 //	System.out.println();
 //	recurstionService.printNumInIncreasingOrder(num);
 //	System.out.println();
 //	recurstionService.printNumDesAndIncOrder(num);
-	
+
 //    String[] values = reader.readLine().split(" ");
-    //long n = Long.parseLong(values[0]);
-    //long m =  Long.parseLong(values[1]);
+		// long n = Long.parseLong(values[0]);
+		// long m = Long.parseLong(values[1]);
 
 //	BigInteger n=new BigInteger(values[0]);
 //	BigInteger m=new BigInteger(values[1]);
@@ -58,7 +55,7 @@ public class RecurstionController {
 //		System.out.println("No");
 //
 //	}
-	
+
 //	  int arr[] = new int[5];
 //	  for(int i =0; i<5; i++) {
 //		  arr[arr[i]] = i+arr[i];
@@ -67,7 +64,7 @@ public class RecurstionController {
 //	  for(int i =0; i<5; i++) {
 //		  sum+= arr[i];
 //	  }
-  	
+
 //	int i = 2047;
 //	int cnt = 0;
 //	for(; cnt!= 11; i/=2) {
@@ -83,15 +80,15 @@ public class RecurstionController {
 //	   cnt++;
 //	}
 //	System.out.println(sum);
-	
-	 Scanner scan = new Scanner(System.in);
-	 //long result = recurstionService.getCandyCrushCost(scan.nextLong());
-	 
-	 String s1 = "abc";
-	 String s3 = new String("abc");
-	 
-	 System.out.println(s1 == s3);
-	 System.out.println(s1.equals(s3));
+
+//		Scanner scan = new Scanner(System.in);
+//		// long result = recurstionService.getCandyCrushCost(scan.nextLong());
+//
+//		String s1 = "abc";
+//		String s3 = new String("abc");
+//
+//		System.out.println(s1 == s3);
+//		System.out.println(s1.equals(s3));
 //	  int n = scan.nextInt();
 //	  int s = scan.nextInt();
 //	  int num[] = new int[n];
@@ -108,7 +105,20 @@ public class RecurstionController {
 //			} else {
 //				System.out.println(intMin+1);
 //			}
-	
+		
+		oneDArrayTest();
+
 	}
-	
+
+	public static void oneDArrayTest() {
+		int size = scan.nextInt();
+		int[] arr = new int[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = scan.nextInt();
+		}
+
+		System.out.println(recurstionService.permute(arr));
+
+	}
+
 }

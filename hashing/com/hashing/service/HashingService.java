@@ -10,6 +10,87 @@ import java.util.Map;
 public class HashingService {
 
 	/**
+	 * Given an unsorted array arr[] of N integers and a sum. The task is to count
+	 * the number of subarrays which adds to a given number.
+	 * 
+	 * @param arr
+	 * @param k
+	 */
+	public void countSubArrayWithGivenSum(int[] arr, int k) {
+
+		Map<Long, Integer> countElementMap = new HashMap<>();
+		long sum = 0;
+		int countSubArrayWithGivenSum = 0;
+		countElementMap.put(0l, 1);
+		for (int element : arr) {
+			sum += element;
+			if (countElementMap.containsKey(sum - k)) {
+				countSubArrayWithGivenSum += countElementMap.get(sum - k);
+			}
+			countElementMap.put(sum, countElementMap.getOrDefault(sum, 0) + 1);
+		}
+		System.out.println(countSubArrayWithGivenSum);
+	}
+
+	/**
+	 * Given an array containing N integers and an integer K. Your task is to find
+	 * the length of the longest Sub-Array with sum of the elements equal to the
+	 * given value K.
+	 * 
+	 * @param arr
+	 * @param k
+	 * @return
+	 */
+	public void lengthOfLongestSubArray(int[] arr, int k) {
+		int lengthOfLongestSubArray = 0;
+		Long sum = 0l;
+
+		Map<Long, Integer> sumIndexMap = new HashMap<>();
+		sumIndexMap.put(0l, -1);
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+
+			if (sumIndexMap.containsKey(sum - k)) {
+				int index = sumIndexMap.get(sum - k);
+				if (lengthOfLongestSubArray < i - index) {
+					lengthOfLongestSubArray = i - index;
+				}
+			}
+			if (!sumIndexMap.containsKey(sum)) {
+				sumIndexMap.put(sum, i);
+			}
+		}
+
+		System.out.println(lengthOfLongestSubArray);
+
+	}
+
+	// work only for +tive Number
+	public void lenOfLongSubarr(int[] arr, int k) {
+		int lengthOfLongestSubArray = 0;
+
+		long[] sumArr = new long[arr.length + 1];
+		long sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+			sumArr[i + 1] = sum;
+		}
+
+		int j = 1;
+		for (int i = 0; i < sumArr.length; i++) {
+			while (j < sumArr.length && sumArr[j] - sumArr[i] <= k) {
+				j++;
+			}
+			j--;
+
+			if (sumArr[j] - sumArr[i] == k && lengthOfLongestSubArray < (j - i)) {
+				lengthOfLongestSubArray = j - i;
+			}
+		}
+		System.out.println(lengthOfLongestSubArray);
+	}
+
+	/**
 	 * First line of input contains a single integer N, second line of input
 	 * contains N space separated strings. Third line of input contains a single
 	 * integer Q, next Q line contains a single string each.

@@ -15,8 +15,8 @@ public class HashingController {
 	public static void main(String[] args) {
 		// int num = scan.nextInt();
 		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
-//		oneDArrayTest();
-		anagramInupt();
+		oneDArrayTest();
+//		anagramInupt();
 		// oneDArrayTestWithTestCase();
 
 		// List<Integer> list = null;
@@ -59,7 +59,10 @@ public class HashingController {
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-		hashingService.countDistinctElementOfSizeK(arr, x);
+		hashingService.countSubArrayWithGivenSum(arr, x);
+//		hashingService.lengthOfLongestSubArray(arr, x);
+//		hashingService.lenOfLongSubarr(arr, x);
+//		hashingService.countDistinctElementOfSizeK(arr, x);
 //		hashingService.maximumDistanceBetweenSameElement(arr, size);
 		// hashingService.countSubArrayWithEqual1sAnd0s(size, arr);
 		// hashingService.countPairWithGivenSum(arr, x);

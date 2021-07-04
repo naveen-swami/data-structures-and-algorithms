@@ -18,7 +18,8 @@ public class MayHackthonController {
 	static MayHackathonService service = new MayHackathonService();
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-//		int num = scan.nextInt();
+		int num = scan.nextInt();
+		MayHackathonService.isItConsecutive(num);
 
 //		AprilHackathonService.printLexicographicallyMinimumString(num);
 
@@ -31,7 +32,7 @@ public class MayHackthonController {
 
 //		AprilHackathonService.lexoSequence(str, k);
 //		oneDArrayTest();
-		oneDArrayTestWithBufferedReader();
+//		oneDArrayTestWithBufferedReader();
 	}
 
 	public static void oneDArrayTestWithBufferedReader() throws NumberFormatException, IOException {

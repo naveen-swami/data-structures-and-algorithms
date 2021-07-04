@@ -7,6 +7,58 @@ import java.util.Map.Entry;
 
 public class StringService {
 
+	/**
+	 * convert Roman number to Integer number
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public int romanToDecimal(String str) {
+		
+		// Double brace initialization for map
+//         final Map<Character, Integer> romanDecimalMap = 
+//                new HashMap() {{
+//                  put('I', 1);
+//                  put('V', 5);
+//                  put('X', 10);
+//                  put('L', 50);
+//                  put('C', 100);
+//                  put('D', 500);
+//                  put('M', 1000);
+//                }};
+
+		final Map<Character, Integer> romanDecimalMap = new HashMap<>();
+
+		romanDecimalMap.put('I', 1);
+		romanDecimalMap.put('V', 5);
+		romanDecimalMap.put('X', 10);
+		romanDecimalMap.put('L', 50);
+		romanDecimalMap.put('C', 100);
+		romanDecimalMap.put('D', 500);
+		romanDecimalMap.put('M', 1000);
+
+		int sum = 0;
+
+		for (int i = 0; i < str.length(); i++) {
+
+			int num1 = romanDecimalMap.get(str.charAt(i));
+			if (i + 1 < str.length()) {
+				int num2 = romanDecimalMap.get(str.charAt(i + 1));
+
+				if (num1 < num2) {
+					sum += num2 - num1;
+					i++;
+				} else {
+					sum += num1;
+				}
+			} else {
+				sum += num1;
+			}
+		}
+
+		return sum;
+	}
+
 	// we have to print first non repeating character
 	// String a = "inteligence";
 	public char getFirstNonRepChar(String str) {

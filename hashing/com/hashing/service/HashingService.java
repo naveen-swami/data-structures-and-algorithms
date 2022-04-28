@@ -3,11 +3,97 @@ package com.hashing.service;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class HashingService {
+
+	/**
+	 * 
+	 * Given N pairs of strings where both strings in the pair are synonymous, also
+	 * given a single input string S. Find all the synonymous string corresponding
+	 * to S. <br>
+	 * 
+	 * Sample Input: 4 <br>
+	 * ram shyam <br>
+	 * shyam lalit <br>
+	 * hari lalit <br>
+	 * ram naman <br>
+	 * ram <br>
+	 * 
+	 * Sample Output:- <br>
+	 * hari lalit naman shyam
+	 * 
+	 * @param friendsArr
+	 * @param size
+	 */
+	public void synonymStrings(String[][] friendsArr, int size, String synonymsFriend) {
+
+		Map<String, Set<String>> synonymsMap = new HashMap<>();
+		for (int i = 0; i < size; i++) {
+				String firstFriend = friendsArr[i][0];
+				String secondFriend = friendsArr[i][1];
+				Set<String>	synonmySet = new HashSet<>();
+				if (synonymsMap.containsKey(firstFriend)) {
+					synonmySet = synonymsMap.get(firstFriend);
+					synonmySet.add(secondFriend);
+					synonymsMap.put(firstFriend, synonmySet);
+				} else {
+				    if(synonymsMap.containsKey(secondFriend)) {
+				    	synonmySet = synonymsMap.get(secondFriend);
+						synonmySet.add(firstFriend);
+						synonymsMap.put(secondFriend, synonmySet);
+						synonymsMap.put(firstFriend, new HashSet<>());
+						continue;
+				    } else {
+					synonmySet.add(friendsArr[i][1]);
+					synonymsMap.put(firstFriend, synonmySet);
+				    }
+				}
+				
+			    synonmySet = new HashSet<>();
+				if (synonymsMap.containsKey(secondFriend)) {
+					synonmySet = synonymsMap.get(secondFriend);
+					synonmySet.add(firstFriend);
+					synonymsMap.put(secondFriend, synonmySet);
+				} else {
+					synonymsMap.put(secondFriend, synonmySet);
+				}
+				
+		}
+		
+		
+		// now we have to fetch data from synonymsMap
+		// find synonymsFriend for it
+		Set<String> lexicographicalOrder = new TreeSet<>();
+	    getSetInLexicographicalOrder(lexicographicalOrder, synonymsMap, synonymsFriend);
+//		System.out.println(lexicographicalOrder.toString());
+	    displaySet(lexicographicalOrder);
+	    
+	}
+	
+	private void getSetInLexicographicalOrder(Set<String> synonymSet, Map<String, Set<String>> synonmsMap, String friend) {
+		if(synonmsMap.get(friend) == null || synonmsMap.get(friend).isEmpty()) {
+			return;
+		}
+		for(String fri : synonmsMap.get(friend)) {
+			synonymSet.add(fri);
+			getSetInLexicographicalOrder(synonymSet, synonmsMap, fri);
+		}
+    }
+	
+    public void displaySet(Set<String> set) {
+    	if(set.isEmpty()) {
+    		System.out.println(-1);
+    	}
+    	set.forEach(it -> {
+    		System.out.print(it + " ");
+    	});
+    }
 
 	/**
 	 * Given an unsorted array arr[] of N integers and a sum. The task is to count

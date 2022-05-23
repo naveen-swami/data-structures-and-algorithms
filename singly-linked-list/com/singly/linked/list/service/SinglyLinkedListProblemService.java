@@ -330,6 +330,24 @@ public class SinglyLinkedListProblemService extends SinglyLinkedListDeletionServ
 
 		return true;
 	}
+	
+	public Node reverseLinkedList(Node rootNode) {
+        if(rootNode == null) {
+            return null;
+        }
+        if(rootNode.next == null ) {
+        	return rootNode;
+        }
+        
+        Node nextNode = rootNode.next;
+        
+        Node returnNode = reverseLinkedList(nextNode);
+        
+        rootNode.next = null;
+        
+        nextNode.next = rootNode;
+        return returnNode;
+    }
 
 	// 5
 	// 1 12 221 21 1

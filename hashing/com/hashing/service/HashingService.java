@@ -1,9 +1,11 @@
 package com.hashing.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,37 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class HashingService {
+
+	/**
+	 * Given an array of N integers and an integer K, your task is to calculate the
+	 * count of pairs whose sum is divisible by K. Sample Input 5 3 1 2 3 4 5
+	 * 
+	 * Sample Output 4
+	 * 
+	 * Explanation:- In Sample 2, (1 5), (1 2), (2 4), and (4 5) are the required
+	 * pairs
+	 */
+	public void countPairSumDivisibleByK(int[] arr, int k) {
+		int countPair = 0;
+
+		// arr = 1 2 3 4 5 and k = 3
+		Map<Integer, Integer> countMap = new HashMap<>();
+//		int[] countArr = new int[k];
+		// 2 -> 1
+		//
+		for (int val : arr) { // 2
+			val = val % k; // 2
+
+			if (countMap.containsKey((k - val) % k)) {
+				countPair += countMap.get((k - val) % k); // 1
+			}
+//			val = val == 0 ? 0 : k - val; // 2
+			countMap.put(val, countMap.getOrDefault(val, 0) + 1);
+		}
+
+//		return countPair;
+		System.out.println(countPair);
+	}
 
 	/**
 	 * 
@@ -35,65 +68,138 @@ public class HashingService {
 
 		Map<String, Set<String>> synonymsMap = new HashMap<>();
 		for (int i = 0; i < size; i++) {
-				String firstFriend = friendsArr[i][0];
-				String secondFriend = friendsArr[i][1];
-				Set<String>	synonmySet = new HashSet<>();
-				if (synonymsMap.containsKey(firstFriend)) {
-					synonmySet = synonymsMap.get(firstFriend);
-					synonmySet.add(secondFriend);
-					synonymsMap.put(firstFriend, synonmySet);
-				} else {
-				    if(synonymsMap.containsKey(secondFriend)) {
-				    	synonmySet = synonymsMap.get(secondFriend);
-						synonmySet.add(firstFriend);
-						synonymsMap.put(secondFriend, synonmySet);
-						synonymsMap.put(firstFriend, new HashSet<>());
-						continue;
-				    } else {
-					synonmySet.add(friendsArr[i][1]);
-					synonymsMap.put(firstFriend, synonmySet);
-				    }
-				}
-				
-			    synonmySet = new HashSet<>();
+			String firstFriend = friendsArr[i][0];
+			String secondFriend = friendsArr[i][1];
+			Set<String> synonmySet = new HashSet<>();
+			if (synonymsMap.containsKey(firstFriend)) {
+				synonmySet = synonymsMap.get(firstFriend);
+				synonmySet.add(secondFriend);
+				synonymsMap.put(firstFriend, synonmySet);
+			} else {
 				if (synonymsMap.containsKey(secondFriend)) {
 					synonmySet = synonymsMap.get(secondFriend);
 					synonmySet.add(firstFriend);
 					synonymsMap.put(secondFriend, synonmySet);
+					synonymsMap.put(firstFriend, new HashSet<>());
+					continue;
 				} else {
-					synonymsMap.put(secondFriend, synonmySet);
+					synonmySet.add(friendsArr[i][1]);
+					synonymsMap.put(firstFriend, synonmySet);
 				}
-				
+			}
+
+			synonmySet = new HashSet<>();
+			if (synonymsMap.containsKey(secondFriend)) {
+				synonmySet = synonymsMap.get(secondFriend);
+				synonmySet.add(firstFriend);
+				synonymsMap.put(secondFriend, synonmySet);
+			} else {
+				synonymsMap.put(secondFriend, synonmySet);
+			}
+
 		}
-		
-		
+
 		// now we have to fetch data from synonymsMap
 		// find synonymsFriend for it
 		Set<String> lexicographicalOrder = new TreeSet<>();
-	    getSetInLexicographicalOrder(lexicographicalOrder, synonymsMap, synonymsFriend);
+		getSetInLexicographicalOrder(lexicographicalOrder, synonymsMap, synonymsFriend);
 //		System.out.println(lexicographicalOrder.toString());
-	    displaySet(lexicographicalOrder);
-	    
+		displaySet(lexicographicalOrder, synonymsFriend);
+
 	}
-	
-	private void getSetInLexicographicalOrder(Set<String> synonymSet, Map<String, Set<String>> synonmsMap, String friend) {
-		if(synonmsMap.get(friend) == null || synonmsMap.get(friend).isEmpty()) {
+
+	private void getSetInLexicographicalOrder(Set<String> synonymSet, Map<String, Set<String>> synonmsMap,
+			String friend) {
+		if (synonmsMap.get(friend) == null || synonmsMap.get(friend).isEmpty()) {
 			return;
 		}
-		for(String fri : synonmsMap.get(friend)) {
+		for (String fri : synonmsMap.get(friend)) {
+			if (synonymSet.contains(fri)) {
+				continue;
+			}
 			synonymSet.add(fri);
 			getSetInLexicographicalOrder(synonymSet, synonmsMap, fri);
 		}
-    }
-	
-    public void displaySet(Set<String> set) {
-    	if(set.isEmpty()) {
-    		System.out.println(-1);
-    	}
-    	set.forEach(it -> {
-    		System.out.print(it + " ");
-    	});
-    }
+	}
+
+	public void displaySet(Set<String> set, String synonymsFriend) {
+		if (set.isEmpty()) {
+			System.out.println(-1);
+		}
+		set.forEach(it -> {
+			if (it.compareTo(synonymsFriend) != 0) {
+				System.out.print(it + " ");
+			}
+		});
+	}
+
+	public void synonymStrings1(String[][] friendsArr, int size, String synonymsFriend) { // accepted
+		HashMap<String, List<String>> m = new HashMap<>();
+		HashMap<String, Integer> visited = new HashMap<>();
+		List<String> l = new ArrayList<>();
+		for (int i = 0; i < size; i++) {
+			String firstFriend = friendsArr[i][0];
+			String secondFriend = friendsArr[i][1];
+			if (m.containsKey(firstFriend) || m.containsKey(secondFriend)) {
+				if (m.containsKey(firstFriend) && m.containsKey(secondFriend)) {
+					List<String> l1 = m.get(firstFriend);
+					l1.add(secondFriend);
+					m.put(firstFriend, l1);
+					List<String> l2 = m.get(secondFriend);
+					l2.add(firstFriend);
+					m.put(secondFriend, l2);
+				} else if (m.containsKey(firstFriend)) {
+					List<String> l1 = m.get(firstFriend);
+					l1.add(secondFriend);
+					m.put(firstFriend, l1);
+					List<String> l2 = new ArrayList<>();
+					l2.add(firstFriend);
+					m.put(secondFriend, l2);
+					visited.put(secondFriend, 0);
+				} else {
+					List<String> l1 = m.get(secondFriend);
+					l1.add(firstFriend);
+					m.put(secondFriend, l1);
+					List<String> l2 = new ArrayList<>();
+					l2.add(secondFriend);
+					m.put(firstFriend, l2);
+					visited.put(firstFriend, 0);
+				}
+			} else {
+				List<String> l1 = new ArrayList<>();
+				l1.add(secondFriend);
+				m.put(firstFriend, l1);
+				List<String> l2 = new ArrayList<>();
+				l2.add(firstFriend);
+				m.put(secondFriend, l2);
+				visited.put(firstFriend, 0);
+				visited.put(secondFriend, 0);
+			}
+
+		}
+		if (m.containsKey(synonymsFriend)) {
+			visit(synonymsFriend, l, m, visited);
+			Collections.sort(l);
+			for (String i : l) {
+				if (i.equals(synonymsFriend))
+					continue;
+				System.out.print(i + " ");
+			}
+		} else
+			System.out.print(-1);
+	}
+
+	void visit(String key, List<String> l, HashMap<String, List<String>> m, HashMap<String, Integer> visited) {
+		l.add(key);
+		visited.put(key, 1);
+		Iterator<String> i = m.get(key).listIterator();
+		while (i.hasNext()) {
+			String n = i.next();
+			if (visited.get(n) == 0) {
+				visit(n, l, m, visited);
+			}
+		}
+	}
 
 	/**
 	 * Given an unsorted array arr[] of N integers and a sum. The task is to count

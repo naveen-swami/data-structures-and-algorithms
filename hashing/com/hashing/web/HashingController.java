@@ -35,7 +35,9 @@ public class HashingController {
 //		   scan.next(); // due to space in scan.next()
 		}
         String synonymFriend = scan.next();
-		hashingService.synonymStrings(friendArr, size, synonymFriend);
+//		hashingService.synonymStrings(friendArr, size, synonymFriend);
+		hashingService.synonymStrings1(friendArr, size, synonymFriend);
+
 	}
 
 	public static void oneDArrayTestWithTestCase() {
@@ -73,7 +75,8 @@ public class HashingController {
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-		hashingService.countSubArrayWithGivenSum(arr, x);
+		hashingService.countPairSumDivisibleByK(arr, x);
+//		hashingService.countSubArrayWithGivenSum(arr, x);
 //		hashingService.lengthOfLongestSubArray(arr, x);
 //		hashingService.lenOfLongSubarr(arr, x);
 //		hashingService.countDistinctElementOfSizeK(arr, x);

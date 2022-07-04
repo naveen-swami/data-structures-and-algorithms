@@ -17,7 +17,7 @@ public class HeapController {
 //		 int num = scan.nextInt();
 		// System.out.println(dsaContestNumber4Service.closestPrimeNumber(num));
 //		oneDArrayTest();
-//		multiTestCases();
+		multiTestCases();
 		// twoDArrayTest();
 
 //		List<Integer> list = null;
@@ -50,11 +50,12 @@ public class HeapController {
 		int testCase = scan.nextInt();
 		while (testCase-- > 0) {
 			int size = scan.nextInt();
+			int k = scan.nextInt();
 			int[] arr = new int[size];
 			for (int i = 0; i < size; i++) {
 				arr[i] = scan.nextInt();
 			}
-			heapService.minimumCostOfRopes(arr, size);
+			heapService.maximumProductOfKIntegerArray(arr, size, k);
 		}
 
 	}

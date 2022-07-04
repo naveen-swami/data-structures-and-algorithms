@@ -1,14 +1,77 @@
 package com.heap.service;
 
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class HeapService {
 
-//	Minimum Cost of ropes
-	
 	/**
 	 * 
-	 * 	 * You are given N ropes of L[i] lengths, you need to connect these ropes into
+	 * Problem Statement Given an input stream of N integers. The task is to insert
+	 * these numbers into a new stream and find the median of the stream formed by
+	 * each insertion of X to the new stream.
+	 * 
+	 * Note: Median is the middle value in an ordered integer list. If the size of
+	 * the list is even, there is no middle value. So the median is the mean of the
+	 * two middle values. Input User Task: Since this will be a functional problem,
+	 * you don't have to take input. You just have to complete the function
+	 * getMedian() that takes X as parameter.
+	 * 
+	 * Constraints: 1 <= N <= 10^5 1 <= X <= 10^5 Output You need to return the
+	 * median. Example Sample Input: 4 5 15 1 3
+	 * 
+	 * Sample Output: 5.0 10.0 5.0 4.0
+	 * 
+	 * Explanation: Testcase 1: Flow in stream : 5, 15, 1, 3 5 goes to stream -->
+	 * median 5.0 (5) 15 goes to stream --> median 10.0 (5, 15) 1 goes to stream -->
+	 * median 5.0 (5, 15, 1) 3 goes to stream --> median 4.0 (5, 15, 1, 3)
+	 * 
+	 * @param arr
+	 * @param size
+	 * @param k
+	 */
+	public void getMedianOfArray(int[] arr, int size, int k) {
+		
+	}
+
+	/**
+	 * https://my.newtonschool.co/playground/code/q755xzjhovqr/
+	 * 
+	 * Problem Statement Given an array of n positive integers. We are required to
+	 * write a program to print the maximum product of k integers of the given
+	 * array. Input The input line contains T, denoting the number of testcases.
+	 * Each testcase contains 2 lines. First line contains size of array N and K.
+	 * Second line contains elements of array
+	 * 
+	 * Constraints: 1 <= T <= 50 1 <= N <= 100 1 <= K <= min(N,10) 0 <= A[i] <= 100
+	 * 
+	 * It is guaranteed that answer will be less than 10^18. Output For each
+	 * testcase you need to print the maximum product of K integers Example Sample
+	 * Input: 2 5 3 2 4 7 9 6 4 2 12 14 11 7
+	 * 
+	 * Sample Output: 378 168
+	 * 
+	 * @param arr
+	 * @param size
+	 * @param k
+	 */
+	public void maximumProductOfKIntegerArray(int[] arr, int size, int k) {
+		PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Collections.reverseOrder()); // max heap
+		for (int i = 0; i < size; i++) {
+			maxPQ.add(arr[i]);
+		}
+
+		long prod = 1;
+		while (k-- > 0 && !maxPQ.isEmpty()) {
+			prod *= maxPQ.poll();
+		}
+
+		System.out.println(prod);
+	}
+
+	/**
+	 * 
+	 * * You are given N ropes of L[i] lengths, you need to connect these ropes into
 	 * one rope. The cost to connect two ropes is equal to sum of their lengths. The
 	 * task is to connect the ropes with minimum cost.
 	 *
@@ -35,10 +98,8 @@ public class HeapService {
 	 * 
 	 * @return void
 	 */
-
 	public void minimumCostOfRopes(int[] arr, int size) {
 
-		
 		PriorityQueue<Integer> pq = new PriorityQueue<>(); // by default it is min heap
 		for (int i = 0; i < arr.length; i++) {
 			pq.add(arr[i]);

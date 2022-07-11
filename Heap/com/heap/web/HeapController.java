@@ -31,8 +31,9 @@ public class HeapController {
 		for (int i = 0; i < size; i++) {
 			arr[i] = scan.nextInt();
 		}
-
-		heapService.minimumCostOfRopes(arr, size);
+		
+		heapService.getMedianOfArray(arr, size);
+//		heapService.minimumCostOfRopes(arr, size);
 
 	}
 
@@ -55,7 +56,8 @@ public class HeapController {
 			for (int i = 0; i < size; i++) {
 				arr[i] = scan.nextInt();
 			}
-			heapService.maximumProductOfKIntegerArray(arr, size, k);
+			heapService.kthLargestValueFromArray(arr, size, k);
+//			heapService.maximumProductOfKIntegerArray(arr, size, k);
 		}
 
 	}

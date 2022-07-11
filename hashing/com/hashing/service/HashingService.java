@@ -13,6 +13,34 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class HashingService {
+	
+	public static List<String> processLogs(List<String> logs, int threshold) {
+	    // Write your code here
+	        List<String> resList = new ArrayList<>();
+	        HashMap<String, Integer> hm = new HashMap<>();
+	        for(String log : logs) {
+	           String[] ids = log.split("\\s+");
+	            if(ids[0].equals(ids[1])){
+	               hm.put(ids[0], hm.getOrDefault(ids[0], 0) + 1); 
+	            } else{
+	                 hm.put(ids[0], hm.getOrDefault(ids[0], 0) + 1); 
+	                 hm.put(ids[1], hm.getOrDefault(ids[1], 0) + 1); 
+	            }
+	        }
+	        
+	        List<Integer> res = new ArrayList<>();
+	        for(Map.Entry<String, Integer> set : hm.entrySet()) {
+	            if(set.getValue() >= threshold) {
+	                res.add(set.getValue());
+	            }
+	        }
+	        
+	        Collections.sort(res);
+	        for(int id : res){
+	            resList.add(String.valueOf(id));
+	        }
+	        return resList;
+	    }
 
 	/**
 	 * Given an array of N integers and an integer K, your task is to calculate the

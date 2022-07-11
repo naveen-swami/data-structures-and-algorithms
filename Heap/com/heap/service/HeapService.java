@@ -4,6 +4,50 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class HeapService {
+	
+	
+	 public int fillCups(int[] arr) {
+	       int seconds = 0;
+	       PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+	       
+	       for(int value: arr) {
+	    	   if(value > 0) {
+	    	   pq.add(value);
+	    	   }
+	       }
+	       
+	       while(pq.size() > 1) {
+	    	   int first = pq.poll() - 1;
+	    	   int second = pq.poll() - 1;
+	    	   if(first > 0) {
+	    		   pq.add(first);
+	    	   }
+	    	   if(second > 0) {
+	    		   pq.add(second);
+	    	   }
+	    	   seconds++;
+	       }
+	       if(!pq.isEmpty()) {
+	    	   seconds += pq.poll();
+	       }
+	       
+	       return seconds;
+	    }
+
+
+	public void kthLargestValueFromArray(int[] arr, int size, int k) {
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		for (int i = 0; i < size; i++) {
+			pq.add(arr[i]); // nlogn
+			if(pq.size() > k) {
+				pq.poll();
+			}
+		}
+//		while (k-- > 1 && !pq.isEmpty()) {
+//			pq.poll(); // klogn
+//		}
+		System.out.println(pq.peek());
+	}
 
 	/**
 	 * 
@@ -30,8 +74,51 @@ public class HeapService {
 	 * @param size
 	 * @param k
 	 */
-	public void getMedianOfArray(int[] arr, int size, int k) {
-		
+	public void getMedianOfArray(int[] arr, int size) {
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // 5
+		PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder()); // 2
+
+		for (int i = 0; i < size; i++) {
+			double meadian = 0;
+			int num = arr[i]; // 1
+			if (maxHeap.isEmpty()) {
+				maxHeap.add(num);
+				meadian = num;
+				System.out.println(meadian); // 5
+				continue;
+			}
+
+			if (minHeap.size() < maxHeap.size()) {
+				if (num > maxHeap.peek()) {
+					minHeap.add(num);
+				} else {
+					minHeap.add(maxHeap.poll());
+					maxHeap.add(num);
+				}
+				meadian = (double) (minHeap.peek() + maxHeap.peek()) / 2;
+				System.out.println(meadian);
+			} else if (minHeap.size() > maxHeap.size()) {
+				if (num < minHeap.peek()) {
+					maxHeap.add(num);
+				} else {
+					maxHeap.add(minHeap.poll());
+					minHeap.add(num);
+				}
+				meadian = (double) (minHeap.peek() + maxHeap.peek()) / 2;
+				System.out.println(meadian);
+			} else {
+				if (num <= maxHeap.peek()) {
+					maxHeap.add(num);
+					meadian = maxHeap.peek();
+					System.out.println(meadian);
+				} else {
+					minHeap.add(num);
+					meadian = minHeap.peek();
+					System.out.println(meadian);
+				}
+			}
+		}
+
 	}
 
 	/**

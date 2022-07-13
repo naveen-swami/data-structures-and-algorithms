@@ -1,10 +1,127 @@
 package com.deque.service;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
+
+
 
 public class DequeService {
+	
+	/**
+	 * {@link} https://leetcode.com/problems/sum-of-total-strength-of-wizards/
+	 * 
+	 * @param strength
+	 * @return
+	 */
+	 public int totalStrength1(int[] arr) {
+	        int n = arr.length;
+	        int m = (int) 1e9 + 7;
+	        Deque<Integer> rs = new ArrayDeque<>();
+	        Deque<Integer> ls = new ArrayDeque<>();
+	        int[] right = new int[n];
+	        int[] left = new int[n];
+	        int[] pre = new int[n];
+	        int[] suf = new int[n];
+	        int[] ppre = new int[n];
+	        int[] ssuf = new int[n];
+	        
+	        Arrays.fill(right, n-1);
+	        for(int i = 0, j = n-1; i <n; i++, j--) {
+	            
+	            while(!rs.isEmpty() && arr[i] < arr[rs.peek()]) {
+	                right[rs.pop()] = i -1;
+	            }
+	            
+	        
+	        
+	        while(!ls.isEmpty() && arr[j] <= arr[ls.peek()]) {
+	            left[ls.pop()] = j+1;
+	        }
+	        rs.push(i);
+	        ls.push(j);
+	        pre[i] = i == 0 ? arr[i] : (arr[i] + pre[i-1]) % m;
+	        
+	        suf[j] = i == 0 ? arr[j] : (arr[j] + suf[j+1]) % m;
+	        
+	        ppre[i] = i == 0 ? pre[i] : (pre[i] + ppre[i-1]) % m;
+	        
+	        ssuf[j] = i == 0 ? suf[j] : (suf[j] + ssuf[j+1]) % m;
+	         
+	        }
+	        
+	        long ans =0;
+	        
+	        for(int i =0; i <n; i++) {
+	            long lval = ((1L *(i -left[i]+1) * pre[i] % m - (i==0 ? 0: (ppre[i-1] - (left[i] <= 1? 0 : ppre[left[i] - 2]))) + m )%m) * (right[i] - i+1)%m;
+	            
+	            long rval = ((1L *(right[i] - i +1) * suf[i] % m - (i== n-1 ? 0: (ssuf[i+1] - (right[i] >= n-2? 0 : ssuf[right[i] + 2]))) + m )%m) * ( i - left[i] + 1)%m;
+	            
+	            long mid = (1L * (i -left[i] + 1) * (right[i] - i +1)) %m *arr[i] %m;
+	            ans = (ans + (lval + rval - mid + m) % m * arr[i] %m + m) %m;
+	        }
+	        return (int) ans;
+	    }
+	
+	/**
+	 * 
+	 * {@link} https://leetcode.com/problems/sum-of-total-strength-of-wizards/
+	 * 
+	 * @param strength
+	 * @return
+	 */
+	 public int totalStrength(List<Integer> a) {
+		 
+	        int n = a.size();
+	        int m = (int) 1e9 + 7;
+	        Deque<Integer> rs = new ArrayDeque<>();
+	        Deque<Integer> ls = new ArrayDeque<>();
+	        int[] right = new int[n];
+	        int[] left = new int[n];
+	        int[] pre = new int[n];
+	        int[] suf = new int[n];
+	        int[] ppre = new int[n];
+	        int[] ssuf = new int[n];
+	        
+	        Arrays.fill(right, n-1);
+	        for(int i = 0, j = n-1; i <n; i++, j--) {
+	            
+	            while(!rs.isEmpty() && a.get(i) < a.get(rs.peek())) {
+	                right[rs.pop()] = i -1;
+	            }
+	            
+	        
+	        
+	        while(!ls.isEmpty() && a.get(j) <= a.get(ls.peek())) {
+	            left[ls.pop()] = j+1;
+	        }
+	        rs.push(i);
+	        ls.push(j);
+	        pre[i] = i == 0 ? a.get(i) : (a.get(i) + pre[i-1]) % m;
+	        
+	        suf[j] = i == 0 ? a.get(j) : (a.get(j) + suf[j+1]) % m;
+	        
+	        ppre[i] = i == 0 ? pre[i] : (pre[i] + ppre[i-1]) % m;
+	        
+	        ssuf[j] = i == 0 ? suf[j] : (suf[j] + ssuf[j+1]) % m;
+	         
+	        }
+	        
+	        long ans =0;
+	        
+	        for(int i =0; i <n; i++) {
+	            long lval = ((1L *(i -left[i]+1) * pre[i] % m - (i==0 ? 0: (ppre[i-1] - (left[i] <= 1? 0 : ppre[left[i] - 2]))) + m )%m) * (right[i] - i+1)%m;
+	            
+	            long rval = ((1L *(right[i] - i +1) * suf[i] % m - (i== n-1 ? 0: (ssuf[i+1] - (right[i] >= n-2? 0 : ssuf[right[i] + 2]))) + m )%m) * ( i - left[i] + 1)%m;
+	            
+	            long mid = (1L * (i -left[i] + 1) * (right[i] - i +1)) %m *a.get(i) %m;
+	            ans = (ans + (lval + rval - mid + m) % m * a.get(i) %m + m) %m;
+	        }
+	        return (int) ans;
+	    }
 
 	public void maximumOfAllSubArray(int[] arr, int k) {
 

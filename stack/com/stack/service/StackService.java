@@ -136,6 +136,12 @@ public class StackService {
 		this.displayArr(solArr);
 	}
 
+	/**
+	 * 
+	 * Example of monotonic stack
+	 * 
+	 * @param arr
+	 */
 	public void nextLargerElement(int[] arr) {
 		int[] solArr = new int[arr.length];
 

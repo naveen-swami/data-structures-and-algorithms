@@ -5,7 +5,7 @@ public class ThreePointerService {
 	/**
 	 * 
 	 * It sorts the array. Array which contains 0, 1 and 2. Example: 0, 1, 2, 2, 0,
-	 * 1, 0.
+	 * 1, 0. => 0,0,0,1,1,2,2
 	 * 
 	 * @param arr
 	 * @param size

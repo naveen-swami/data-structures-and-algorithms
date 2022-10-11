@@ -7,11 +7,23 @@ public class ArrayQuestions {
 
 	public static void main(String[] args) {
 		
-		int[] arr = {1, 2, 0};
-		System.out.println(isDuplicateNumberExists(arr));
+//		int[] arr = {1, 2, 0};
+//		System.out.println(isDuplicateNumberExists(arr));
 		
 //	    int[] arr = {2, 3, 6, 4, 5};
 //		System.out.println(largestContinousLength(arr));
+		
+		int num = 1235;
+		sumOfDigits(num);
+	}
+	
+	public static void sumOfDigits(int num) {
+		char[] numChar = String.valueOf(num).toCharArray();
+		int sum = 0;
+		for(char ch: numChar) {
+			sum += ch - '0';
+		}
+		System.out.println(sum);
 	}
 	
 	/**

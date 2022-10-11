@@ -5,6 +5,54 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 public class StackService {
+	
+	/**
+	 * 
+	 *	Monotonic Stack
+	 *
+	 *link <a href="https://leetcode.com/problems/largest-rectangle-in-histogram/">link</a>
+	 *
+	 *
+	 * @param heights
+	 * @return
+	 */
+	 public int largestRectangleArea(int[] heights) {
+		 int max = 0;
+		 
+		 return max;
+	 }
+	
+	/**
+	 * 
+	 *	Monotonic Stack
+	 *
+	 *link <a href="https://leetcode.com/problems/largest-rectangle-in-histogram/">link</a>
+	 *
+	 *
+	 * @param heights
+	 * @return
+	 */
+	 public int largestRectangleAreaBruteMethod(int[] heights) {
+	        int max = 0;
+	        for(int i = 0; i < heights.length; i++) {
+	            int sum = 0;
+	            for(int j = 0; j < heights.length; j ++) {
+	                if(heights[j] >= heights[i]){
+	                   sum += heights[i];
+	                } else{
+	                     if(sum > max) {
+	                       max = sum;
+	                     }
+	                    sum = 0;
+	                }
+	            }
+	            if(sum > max) {
+	                max = sum;
+	            }
+	        }
+	        
+	       return max; 
+	    }
 
 	/**
 	 * Given an array A of N integers, For each i (1 ≤ i ≤ N) your task is to find
@@ -116,6 +164,12 @@ public class StackService {
 		return true;
 	}
 
+	/**
+	 * 
+	 * Example of monotonic stack
+	 * 
+	 * @par
+	 */
 	public void nearestSmallerElement(int[] arr) {
 		int size = arr.length;
 		int[] solArr = new int[size];

@@ -1,6 +1,6 @@
 package com.interview.questions;
 
-public class ProblemSolve {
+public class MergeTwoShortedArr {
 
 	public static void main(String[] args) {
 		int[] arr1 = { 1, 3, 5, 7 };

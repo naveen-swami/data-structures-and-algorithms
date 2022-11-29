@@ -8,6 +8,15 @@ public class ChechMoutain {
 		System.out.println(findPeekValueOfMoutian(arr));
 	}
 	
+	/**
+	 * 
+	 * Need to find peek value of moutian
+	 * arr[0] < arr[1] < arr[2] .... arr[i-1] < arr[i] > arr[i+1] ..... > arr[arr.length -2] > arr[arr.length -1] 
+	 * 
+	 *
+	 * @param arr
+	 * @return i (peek value of mountain)
+	 */
 	static int findPeekValueOfMoutian(int[] arr) {
 		int highestVal = 0;
 		 

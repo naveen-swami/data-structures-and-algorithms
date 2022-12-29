@@ -4,6 +4,65 @@ import java.util.Stack;
 
 public class SinglyLinkedListProblemService extends SinglyLinkedListDeletionService {
 
+	/**
+	 * 
+	 * Remove Duplicates from Sorted List II
+	 * 
+	 * Given the head of a sorted linked list, delete all nodes that have duplicate
+	 * numbers, leaving only distinct numbers from the original list. Return the
+	 * linked list sorted as well.
+	 * 
+	 * Input: head = [1,2,3,3,4,4,5]
+	 * 
+	 * Output: [1,2,5]
+	 * 
+	 * Input: head = [1,1,1,2,3] 
+	 * 
+	 * Output: [2,3]
+	 * 
+	 * @questionLink https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/submissions/862479699/
+	 * 
+	 * @link https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/solutions/952302/remove-duplicates-from-sorted-list-ii/
+	 * 
+	 * @param head
+	 * @return
+	 */
+	// first way using sentinel
+	public Node removeDuplicateElement(Node head) {
+		
+		Node sentinel = new Node(0);
+		Node predecessor = sentinel; // the last node before the sublist of duplicates
+		
+		while(head != null) {
+			if(head.next != null && head.val == head.next.val) {
+				 while(head.next != null && head.val == head.next.val) {
+					 head = head.next;
+				 }
+				predecessor.next = head.next;
+			} else {
+				predecessor = predecessor.next;
+			}
+			head = head.next;
+		}
+		return sentinel.next;
+	}
+	
+	//second way using recursion
+	public Node removeDuplicateElementWithRecu(Node head) { 
+		if(head == null || head.next == null) {
+			return head;
+		}
+		if(head.val == head.next.val) {
+			// remove duplicate
+			while(head.next != null && head.val == head.next.val) {
+				head = head.next;
+			}
+			return removeDuplicateElementWithRecu(head.next);
+		}
+		head.next = removeDuplicateElementWithRecu(head.next);
+		return head;
+	}
+
 //	find element and remove it
 //	 1 ->  5 -> 6 -> 0 -> -5 -> 10
 
@@ -330,24 +389,24 @@ public class SinglyLinkedListProblemService extends SinglyLinkedListDeletionServ
 
 		return true;
 	}
-	
+
 	public Node reverseLinkedList(Node rootNode) {
-        if(rootNode == null) {
-            return null;
-        }
-        if(rootNode.next == null ) {
-        	return rootNode;
-        }
-        
-        Node nextNode = rootNode.next;
-        
-        Node returnNode = reverseLinkedList(nextNode);
-        
-        rootNode.next = null;
-        
-        nextNode.next = rootNode;
-        return returnNode;
-    }
+		if (rootNode == null) {
+			return null;
+		}
+		if (rootNode.next == null) {
+			return rootNode;
+		}
+
+		Node nextNode = rootNode.next;
+
+		Node returnNode = reverseLinkedList(nextNode);
+
+		rootNode.next = null;
+
+		nextNode.next = rootNode;
+		return returnNode;
+	}
 
 	// 5
 	// 1 12 221 21 1

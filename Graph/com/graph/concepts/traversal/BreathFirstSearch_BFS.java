@@ -3,6 +3,13 @@ package com.graph.concepts.traversal;
 import java.util.*;
 import com.graph.concepts.*;
 
+/**
+ * 
+ * Time Complexity of DFS is O(V + E)
+ * 
+ * @author naveen
+ *
+ */
 public class BreathFirstSearch_BFS {
 
 	public static void main(String[] args) {

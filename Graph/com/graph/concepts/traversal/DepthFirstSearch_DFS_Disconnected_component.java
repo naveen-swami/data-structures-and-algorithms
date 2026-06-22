@@ -8,6 +8,13 @@ import java.util.Stack;
 
 import com.graph.concepts.Edge;
 
+/**
+ * 
+ * Time Complexity of DFS is O(V + E)
+ * 
+ * @author naveen
+ *
+ */
 public class DepthFirstSearch_DFS_Disconnected_component {
 	public static void main(String[] args) {
 		int vertex = 8;
@@ -18,7 +25,8 @@ public class DepthFirstSearch_DFS_Disconnected_component {
 
 		for (int i = 0; i < vertex; i++) {
 			if (!visitedGraph[i]) {
-				printGraphUsingDFS(graph, i, visitedGraph);
+//				printGraphUsingDFS(graph, i, visitedGraph);
+				printGraphUsingDFSRecursion(graph, visitedGraph, i);
 			}
 		}
 
@@ -101,4 +109,15 @@ public class DepthFirstSearch_DFS_Disconnected_component {
 
 	}
 
+	static void printGraphUsingDFSRecursion(List<Edge> graph[], boolean visitedGraph[], int currNode) {
+		System.out.print(currNode + " ");
+		visitedGraph[currNode] = true;
+
+		for (int i = 0; i < graph[currNode].size(); i++) {
+			Edge edge = graph[currNode].get(i);
+			if (!visitedGraph[edge.des]) {
+				printGraphUsingDFSRecursion(graph, visitedGraph, edge.des);
+			}
+		}
+	}
 }

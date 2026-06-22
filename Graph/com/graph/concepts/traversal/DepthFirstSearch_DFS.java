@@ -8,13 +8,22 @@ import java.util.Stack;
 
 import com.graph.concepts.Edge;
 
+/**
+ * 
+ * Time Complexity of DFS is O(V + E)
+ * 
+ * @author naveen
+ *
+ */
 public class DepthFirstSearch_DFS {
 	public static void main(String[] args) {
 		int vertex = 7;
 		List<Edge> graph[] = new ArrayList[vertex];
 		createGraph(graph);
-		printGraphUsingDFS(graph);
-		
+//		printGraphUsingDFS(graph);
+		boolean visitedGraph[] = new boolean[vertex];
+		printGraphUsingDFSRecursion(graph, visitedGraph, 0);
+
 	}
 
 	public static void createGraph(List<Edge> graph[]) {
@@ -66,32 +75,44 @@ public class DepthFirstSearch_DFS {
 
 		stack.add(0);
 
-		while(!stack.isEmpty()) {
+		while (!stack.isEmpty()) {
 			// first remove from stack
 			// curr = queue.remove();
 			// if visitedGraph[curr] == T then continue
 			// print(curr node)
 			// visistedGraph[curr] = T
- 			// add all neighbhour into stack;
-			
+			// add all neighbhour into stack;
+
 			int curr = stack.pop();
-			
-			if(visitedGraph[curr]) {
+
+			if (visitedGraph[curr]) {
 				continue;
 			}
-			
+
 			System.out.print(curr + " ");
-			
+
 			visitedGraph[curr] = true;
-			
-			for(int i = 0; i < graph[curr].size(); i++) {
+
+			for (int i = 0; i < graph[curr].size(); i++) {
 				Edge edge = graph[curr].get(i);
 				stack.add(edge.des);
 			}
-			
-			
 		}
 
+	}
+
+	public static void printGraphUsingDFSRecursion(List<Edge> graph[], boolean visitedGraph[], int currNode) {
+		
+		System.out.print(currNode + " ");
+		visitedGraph[currNode] = true;
+		
+		for(int i = 0; i < graph[currNode].size(); i++) {
+			Edge edge = graph[currNode].get(i);
+			if(!visitedGraph[edge.des]) {
+				printGraphUsingDFSRecursion(graph, visitedGraph, edge.des);
+			}
+		}
+		
 	}
 
 }

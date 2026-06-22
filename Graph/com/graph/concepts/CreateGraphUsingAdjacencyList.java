@@ -57,7 +57,7 @@ public class CreateGraphUsingAdjacencyList {
 	
 	public static void createWeightedNewGraph(List<Edge> graph[]) {
 		
-		// at the begining graph's edge is null so we need to emtpy list
+		// at the begining graph's edge is null so we need to set emtpy list
 		
 		for(int i = 0; i < graph.length; i++) {
 			graph[i] = new ArrayList<Edge>();

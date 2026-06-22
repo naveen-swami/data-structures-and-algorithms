@@ -77,7 +77,7 @@ public class DepthFirstSearch_DFS {
 
 		while (!stack.isEmpty()) {
 			// first remove from stack
-			// curr = queue.remove();
+			// curr = stack.pop();
 			// if visitedGraph[curr] == T then continue
 			// print(curr node)
 			// visistedGraph[curr] = T
